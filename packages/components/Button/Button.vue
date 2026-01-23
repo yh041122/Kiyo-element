@@ -11,5 +11,5 @@ defineOptions({
 });
 </script>
 <template>
-  <button style="background-color: pink">this is a button</button>
+  <button style="background-color: pink">this is a button!</button>
 </template>
