@@ -1,4 +1,8 @@
-import { KiyoButton } from "@kiyo-element/components";
+import {
+  KiyoButton,
+  KiyoButtonGroup,
+  KiyoIcon,
+} from "@kiyo-element/components";
 import type { Plugin } from "vue";
 
-export default [KiyoButton] as Plugin[];
+export default [KiyoButton, KiyoButtonGroup, KiyoIcon] as Plugin[];

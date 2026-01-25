@@ -1,0 +1,96 @@
+@use "sass:math";
+@use "sass:color";
+@import "./reset.css";
+// 全局变量
+:root {
+  /* colors */
+  --kiyo-color-white: #ffffff;
+  --kiyo-color-black: #000000;
+  --kiyo-colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
+  --kiyo-bg-color: #ffffff;
+  --kiyo-bg-color-page: #f2f3f5;
+  --kiyo-bg-color-overlay: #ffffff;
+  --kiyo-text-color-primary: #303133;
+  --kiyo-text-color-regular: #606266;
+  --kiyo-text-color-secondary: #909399;
+  --kiyo-text-color-placeholder: #a8abb2;
+  --kiyo-text-color-disabled: #c0c4cc;
+  --kiyo-border-color: #dcdfe6;
+  --kiyo-border-color-light: #e4e7ed;
+  --kiyo-border-color-lighter: #ebeef5;
+  --kiyo-border-color-extra-light: #f2f6fc;
+  --kiyo-border-color-dark: #d4d7de;
+  --kiyo-border-color-darker: #cdd0d6;
+  --kiyo-fill-color: #f0f2f5;
+  --kiyo-fill-color-light: #f5f7fa;
+  --kiyo-fill-color-lighter: #fafafa;
+  --kiyo-fill-color-extra-light: #fafcff;
+  --kiyo-fill-color-dark: #ebedf0;
+  --kiyo-fill-color-darker: #e6e8eb;
+  --kiyo-fill-color-blank: #ffffff;
+
+  // 使用 SCSS @each 和 @for 循环
+  $colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399,
+  );
+
+  @each $val, $color in $colors {
+    --kiyo-color-#{$val}: #{$color};
+
+    @for $i from 3 through 9 {
+      // 计算混合颜色（light 版本）
+      // $light-percentage: percentage($i / 10);
+      $light-percentage: math.percentage(math.div($i, 10));
+      // $light-color: mix(#fff, $color, $light-percentage);
+      $light-color: color.mix(#fff, $color, $light-percentage);
+      --kiyo-color-#{$val}-light-#{$i}: #{$light-color};
+    }
+
+    // 计算深色版本
+    // $dark-color: mix(#000, $color, 20%);
+    $dark-color: color.mix(#000, $color, 20%);
+    --kiyo-color-#{$val}-dark-2: #{$dark-color};
+  }
+
+  /* border */
+  --kiyo-border-width: 1px;
+  --kiyo-border-style: solid;
+  --kiyo-border-color-hover: var(--kiyo-text-color-disabled);
+  --kiyo-border: var(--kiyo-border-width) var(--kiyo-border-style)
+    var(--kiyo-border-color);
+  --kiyo-border-radius-base: 4px;
+  --kiyo-border-radius-small: 2px;
+  --kiyo-border-radius-round: 20px;
+  --kiyo-border-radius-circle: 100%;
+
+  /*font*/
+  --kiyo-font-size-extra-large: 20px;
+  --kiyo-font-size-large: 18px;
+  --kiyo-font-size-medium: 16px;
+  --kiyo-font-size-base: 14px;
+  --kiyo-font-size-small: 13px;
+  --kiyo-font-size-extra-small: 12px;
+  --kiyo-font-family:
+    "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", Arial, sans-serif;
+  --kiyo-font-weight-primary: 500;
+
+  /*disabled*/
+  --kiyo-disabled-bg-color: var(--kiyo-fill-color-light);
+  --kiyo-disabled-text-color: var(--kiyo-text-color-placeholder);
+  --kiyo-disabled-border-color: var(--kiyo-border-color-light);
+
+  /*animation*/
+  --kiyo-transition-duration: 0.4s;
+  --kiyo-transition-duration-fast: 0.2s;
+}

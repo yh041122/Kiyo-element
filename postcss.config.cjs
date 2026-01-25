@@ -1,12 +1,9 @@
-/* eslint-env node */
+// postcss.config.cjs
 module.exports = {
   plugins: [
+    require("postcss-each"),
+    require("postcss-for"),
     require("postcss-nested"),
-    require("postcss-each-variables"),
-    require("postcss-each")({
-      plugins: {
-        beforeEach: [require("postcss-for"), require("postcss-color-mix")],
-      },
-    }),
+    // 移除 postcss-color-mix
   ],
 };
