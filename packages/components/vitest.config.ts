@@ -11,6 +11,11 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
   },
+  define: {
+    DEV: JSON.stringify(false),
+    PROD: JSON.stringify(false),
+    TEST: JSON.stringify(false),
+  },
 });
 
 // "test": "vitest --coverage"

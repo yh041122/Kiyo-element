@@ -10,8 +10,6 @@ import type { ButtonProps, ButtonInstance, ButtonEmits } from "./types";
 import { inject, ref, computed } from "vue";
 //引入上下文key
 import { BUTTON_GROUP_CTX_KEY } from "./constants";
-//引入样式
-import "./style.scss";
 //节流
 import { throttle } from "lodash-es";
 //引入KiyoIcon组件
@@ -101,3 +99,7 @@ defineExpose<ButtonInstance>({
     <slot></slot>
   </component>
 </template>
+
+<style lang="scss" scoped>
+@use "./style.scss";
+</style>

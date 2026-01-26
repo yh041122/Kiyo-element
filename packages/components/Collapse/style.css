@@ -1,0 +1,64 @@
+/* CSS变量 */
+.kiyo-collapse {
+  --kiyo-collapse-border-color: var(--kiyo-border-color-light);
+  --kiyo-collapse-header-height: 48px;
+  --kiyo-collapse-header-bg-color: var(--kiyo-fill-color-blank);
+  --kiyo-collapse-header-text-color: var(--kiyo-text-color-primary);
+  --kiyo-collapse-header-font-size: 13px;
+  --kiyo-collapse-content-bg-color: var(--kiyo-fill-color-blank);
+  --kiyo-collapse-content-font-size: 13px;
+  --kiyo-collapse-content-text-color: var(--kiyo-text-color-primary);
+  --kiyo-collapse-disabled-text-color: var(--kiyo-disabled-text-color);
+  --kiyo-collapse-disabled-bordkiyo-color: var(--kiyo-border-color-lighter);
+  border-top: 1px solid var(--kiyo-collapse-border-color);
+  border-bottom: 1px solid var(--kiyo-collapse-border-color);
+}
+/* 头部区域 */
+.kiyo-collapse-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--kiyo-collapse-header-height);
+  line-height: var(--kiyo-collapse-header-height);
+  background-color: var(--kiyo-collapse-header-bg-color);
+  color: var(--kiyo-collapse-header-text-color);
+  cursor: pointer;
+  font-size: var(--kiyo-collapse-header-font-size);
+  font-weight: 500;
+  transition: border-bottom-color var(--kiyo-transition-duration);
+  outline: none;
+  border-bottom: 1px solid var(--kiyo-collapse-border-color);
+
+  &.is-disabled {
+    color: var(--kiyo-collapse-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+  }
+
+  &.is-active {
+    border-bottom-color: transparent;
+    .header-angle {
+      transform: rotate(90deg);
+    }
+  }
+
+  .header-angle {
+    transition: transform var(--kiyo-transition-duration);
+  }
+}
+/* 内容区域 */
+.kiyo-collapse-item__content {
+  will-change: height;
+  background-color: var(--kiyo-collapse-content-bg-color);
+  overflow: hidden;
+  box-sizing: bordkiyo-box;
+  font-size: var(--kiyo-collapse-content-font-size);
+  color: var(--kiyo-collapse-content-text-color);
+  border-bottom: 1px solid var(--kiyo-collapse-border-color);
+  padding-bottom: 25px;
+}
+/* 过渡动画 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: height var(--kiyo-transition-duration) ease-in-out;
+}

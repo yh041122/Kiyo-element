@@ -27,6 +27,6 @@ const customStyle = computed(() => ({
     <!-- v-bind绑定对象，将filterProps对象的属性绑定到FontAwesomeIcon组件上 -->
   </i>
 </template>
-<style lang="scss" scoped>
-@import "./style.scss";
+<style lang="scss">
+@use "./style.scss";
 </style>

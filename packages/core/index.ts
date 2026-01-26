@@ -6,6 +6,9 @@ const installer = makeInstaller(components);
 //图标样式
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+//printlogo
+import printLogo from "./printLogo";
+printLogo();
 library.add(fas);
-export * from "../components"; // 按需导出
+export * from "@kiyo-element/components"; // 按需导出
 export default installer; // 默认全量导出

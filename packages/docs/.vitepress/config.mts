@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Kiyo-Element",
+  title: "Kiyo-element",
   description: "高仿 ElementPlus 组件库",
   //添加
   base: "/Kiyo-element/",
@@ -17,7 +17,7 @@ export default defineConfig({
       {
         text: "例子",
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
+          { text: "立即使用", link: "/markdown-examples" },
           { text: "Runtime API Examples", link: "/api-examples" },
         ],
       },

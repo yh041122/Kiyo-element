@@ -1,6 +1,7 @@
 import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3-vite";
 import { fn, within, userEvent, expect } from "storybook/test";
 import { KiyoButton, KiyoButtonGroup } from "kiyo-element";
+import "kiyo-element/dist/theme/Button.css";
 type Story = StoryObj<typeof KiyoButton> & { argTypes?: ArgTypes };
 
 const meta: Meta<typeof KiyoButton> = {

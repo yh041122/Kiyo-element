@@ -4,6 +4,8 @@ module.exports = {
     require("postcss-each"),
     require("postcss-for"),
     require("postcss-nested"),
-    // 移除 postcss-color-mix
+    require("cssnano")({
+      preset: "default",
+    }),
   ],
 };
