@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import { defer, delay, filter, map } from "lodash-es";
 import { readdir, readdirSync } from "fs";
 import { resolve } from "path";
-import { visualizer } from "rollup-plugin-visualize";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import dts from "vite-plugin-dts";
 import hooks from "./hooksPlugin";
