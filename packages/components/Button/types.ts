@@ -1,4 +1,4 @@
-import type { Component, Ref } from "vue";
+import type { Component, Ref, ComputedRef } from "vue";
 
 export type ButtonType = "primary" | "success" | "danger" | "info" | "warning"; //按钮类型
 export type NativeType = "button" | "submit" | "reset"; //原生button的type属性
@@ -39,4 +39,7 @@ export interface ButtonEmits {
 //暴露的实例
 export interface ButtonInstance {
   ref: Ref<HTMLButtonElement | undefined>;
+  disabled: ComputedRef<boolean>;
+  size: ComputedRef<ButtonSize | "">;
+  type: ComputedRef<ButtonType | "">;
 }

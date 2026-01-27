@@ -4,6 +4,7 @@ import {
   KiyoIcon,
   KiyoCollapse,
   KiyoCollapseItem,
+  KiyoAlert,
 } from "@kiyo-element/components";
 import type { Plugin } from "vue";
 
@@ -13,4 +14,5 @@ export default [
   KiyoIcon,
   KiyoCollapse,
   KiyoCollapseItem,
+  KiyoAlert,
 ] as Plugin[];

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CollapseItemProps } from "./types";
 //过渡动画
-import transitionEvents from "./transitionEvent.ts";
+import transitionEvents from "./transitionEvents.ts";
 //Icon
 import KiyoIcon from "../Icon/Icon.vue";
 //依赖注入
