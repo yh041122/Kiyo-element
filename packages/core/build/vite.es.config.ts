@@ -1,8 +1,9 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { delay, filter, map } from "lodash-es";
-import { readdirSync } from "fs";
+import { defer, delay, filter, map } from "lodash-es";
+import { readdir, readdirSync } from "fs";
 import { resolve } from "path";
+import { visualizer } from "rollup-plugin-visualize";
 
 import dts from "vite-plugin-dts";
 import hooks from "./hooksPlugin";
@@ -23,16 +24,23 @@ function getDirectoriesSync(basePath: string) {
 }
 
 function moveStyles() {
-  try {
-    readdirSync("./dist/es/theme");
-    shell.mv("./dist/es/theme", "./dist"); //移动theme文件到dist目录下
-  } catch (_) {
-    delay(moveStyles, TRY_MOVE_STYLE_DELAY);
-  }
+  readdir("./dist/es/theme", (err) => {
+    if (err) return delay(moveStyles, TRY_MOVE_STYLE_DELAY);
+    defer(() => shell.mv("./dist/es/theme", "./dist"));
+  });
+  // try {
+  //   readdirSync("./dist/es/theme");
+  //   shell.mv("./dist/es/theme", "./dist"); //移动theme文件到dist目录下
+  // } catch (_) {
+  //   delay(moveStyles, TRY_MOVE_STYLE_DELAY);
+  // }
 }
 export default defineConfig({
   plugins: [
     vue(),
+    visualizer({
+      filename: "dist/stats.es.html",
+    }),
     dts({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
@@ -74,7 +82,7 @@ export default defineConfig({
     cssCodeSplit: true,
     minify: false,
     lib: {
-      entry: resolve(__dirname, "./index.ts"),
+      entry: resolve(__dirname, "../index.ts"),
       name: "KiyoElement",
       fileName: "index",
       formats: ["es"],

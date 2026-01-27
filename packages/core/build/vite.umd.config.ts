@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 //引入打包工具
 import { compression } from "vite-plugin-compression2";
+import { visualizer } from "rollup-plugin-visualizer";
 //移动样式文件
 import shell from "shelljs";
 import { readFileSync } from "fs";
@@ -27,6 +28,9 @@ function moveStyles() {
 export default defineConfig({
   plugins: [
     vue(),
+    visualizer({
+      filename: "dist/stats.umd.html",
+    }),
     compression({
       include: /.(cjs|css)$/i,
       algorithms: ["gzip"], // 指定只使用 Gzip 压缩算法
@@ -51,7 +55,7 @@ export default defineConfig({
   build: {
     outDir: "dist/umd",
     lib: {
-      entry: resolve(__dirname, "./index.ts"),
+      entry: resolve(__dirname, "../index.ts"),
       name: "KiyoElement",
       fileName: "index",
       formats: ["umd"],
