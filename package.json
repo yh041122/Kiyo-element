@@ -8,7 +8,9 @@
     "story": "pnpm --filter @kiyo-element/play storybook",
     "docs:dev": "pnpm --filter @kiyo-element/docs dev",
     "docs:build": "pnpm --filter @kiyo-element/docs build",
-    "test": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/components test",
+    "test": "run-p  test-utiles test-component",
+    "test-component": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/components test",
+    "test-utiles": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/utils test",
     "build": "cross-env NODE_ENV=production pnpm --filter kiyo-element build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter kiyo-element build:watch"
   },
@@ -52,6 +54,9 @@
     "kiyo-element": "workspace:*",
     "lodash-es": "^4.17.23",
     "story": "^1.0.1",
-    "vue": "^3.5.27"
+    "vue": "^3.5.27",
+    "@vitest/coverage-v8": "^1.4.0",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^24.1.3"
   }
 }
