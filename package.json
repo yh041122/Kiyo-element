@@ -11,7 +11,9 @@
     "test": "run-p  test-utiles test-component",
     "test-component": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/components test",
     "test-utiles": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/utils test",
-    "build": "cross-env NODE_ENV=production pnpm --filter kiyo-element build",
+    "build": "run-s build-comp build-hooks",
+    "build-comp": "cross-env NODE_ENV=production pnpm --filter kiyo-element build",
+    "build-hooks": "cross-env NODE_ENV=production pnpm --filter @kiyo-element/hooks build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter kiyo-element build:watch"
   },
   "keywords": [],
@@ -50,6 +52,7 @@
     "@kiyo-element/hooks": "workspace:*",
     "@kiyo-element/theme": "workspace:*",
     "@kiyo-element/utils": "workspace:*",
+    "@kiyo-element/vite-plugins": "workspace:*",
     "cssnano": "^7.1.2",
     "kiyo-element": "workspace:*",
     "lodash-es": "^4.17.23",

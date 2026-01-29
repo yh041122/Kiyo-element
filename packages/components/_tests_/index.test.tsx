@@ -8,6 +8,7 @@ import {
   KiyoCollapse,
   KiyoCollapseItem,
   KiyoIcon,
+  KiyoTooltip,
 } from "../index";
 
 const comps = [
@@ -17,6 +18,7 @@ const comps = [
   KiyoCollapse,
   KiyoCollapseItem,
   KiyoIcon,
+  KiyoTooltip,
 ] as Plugin[];
 
 describe("components/index", () => {

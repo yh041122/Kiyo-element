@@ -30,7 +30,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: "Button 按钮", link: "components/button.md" },
-          // { text: "Collapse 折叠面板", link: "components/collapse" },
+          { text: "Collapse 折叠面板", link: "components/collapse" },
           // { text: "Dropdown 下拉菜单", link: "components/dropdown" },
         ],
       },

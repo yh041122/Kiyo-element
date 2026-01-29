@@ -10,7 +10,7 @@ import { readFileSync } from "fs";
 import { delay } from "lodash-es";
 import terser from "@rollup/plugin-terser";
 //引入自定义插件
-import hooks from "./hooksPlugin";
+import { hooksPlugin as hooks } from "@kiyo-element/vite-plugins";
 const isProd = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
 const isTest = process.env.NODE_ENV === "test";

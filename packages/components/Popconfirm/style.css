@@ -1,0 +1,13 @@
+.kiyo-popconfirm {
+  .kiyo-popconfirm__main {
+    display: flex;
+    align-items: center;
+    i {
+      margin-right: 5px;
+    }
+  }
+  .kiyo-popconfirm__action {
+    text-align: right;
+    margin-top: 8px;
+  }
+}

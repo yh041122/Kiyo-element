@@ -8,3 +8,5 @@ export const typeIconMap = new Map([
 export * from "./install";
 //导出错误处理工具
 export * from "./error";
+//导出px检测工具
+export * from "./style";

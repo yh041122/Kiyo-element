@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { mount } from "@vue/test-utils";
-import { DefineComponent, createApp, defineComponent } from "vue";
+import { createApp, defineComponent } from "vue";
 import { makeInstaller, withInstall } from "../install";
 const AppComp = defineComponent({
   name: "AppComp",
@@ -33,8 +33,8 @@ describe("install", () => {
 
     expect(CompA.install).toBeDefined(); //CompA 有 install 方法
     expect(CompB.install).toBeDefined();
-    expect(wrapper.findComponent(CompA)).toBeTruthy(); //CompA 被挂载到了 AppComp 中
-    expect(wrapper.findComponent(CompB)).toBeTruthy(); //CompB 被挂载到了 AppComp 中
+    expect(app._context.components["CompA"]).toBeTruthy(); //CompA 被挂载到了 AppComp 中
+    expect(app._context.components["CompB"]).toBeTruthy(); //CompB 被挂载到了 AppComp 中
   });
 
   it("makeInstaller should be worked", () => {
@@ -44,7 +44,7 @@ describe("install", () => {
 
     app.use(installer).mount(wrapper.element);
     expect(installer).toBeDefined();
-    expect(wrapper.findComponent(CompA)).toBeTruthy(); //CompA 被挂载到了 AppComp 中
-    expect(wrapper.findComponent(CompB)).toBeTruthy(); //CompB 被挂载到了 AppComp 中
+    expect(app._context.components["CompA"]).toBeTruthy(); //CompA 被挂载到了 AppComp 中
+    expect(app._context.components["CompB"]).toBeTruthy(); //CompB 被挂载到了 AppComp 中
   });
 });

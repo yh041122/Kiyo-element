@@ -17,6 +17,9 @@ importers:
       '@kiyo-element/utils':
         specifier: workspace:*
         version: link:packages/utils
+      '@kiyo-element/vite-plugins':
+        specifier: workspace:*
+        version: link:_node_modules/vite-plugins
       '@vitest/coverage-v8':
         specifier: ^1.4.0
         version: 1.4.0(vitest@1.4.0)
@@ -121,6 +124,8 @@ importers:
         specifier: 1.8.27
         version: 1.8.27(typescript@5.2.2)
 
+  _node_modules/vite-plugins: {}
+
   _node_modules/vitepress-preview-component:
     dependencies:
       '@vitepress-demo-preview/core':
@@ -210,7 +215,14 @@ importers:
         specifier: 1.0.0-rc.44
         version: 1.0.0-rc.44(@algolia/client-search@5.47.0)(@types/node@24.10.9)(@types/react@19.2.9)(async-validator@4.2.5)(postcss@8.5.6)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.97.3)(search-insights@2.17.3)(sugarss@5.0.1(postcss@8.5.6))(terser@5.46.0)(typescript@5.9.3)
 
-  packages/hooks: {}
+  packages/hooks:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.23
+        version: 4.17.23
+      vue:
+        specifier: ^3.5.27
+        version: 3.5.27(typescript@5.9.3)
 
   packages/play:
     dependencies:

@@ -6,7 +6,7 @@ import { resolve } from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 
 import dts from "vite-plugin-dts";
-import hooks from "./hooksPlugin";
+import { hooksPlugin as hooks } from "@kiyo-element/vite-plugins";
 import terser from "@rollup/plugin-terser";
 import shell from "shelljs";
 const isProd = process.env.NODE_ENV === "production";
