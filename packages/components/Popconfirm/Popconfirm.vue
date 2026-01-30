@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import { addUnit } from "@kiyo-element/utils";
 import type { PopconfirmProps, PopconfirmEmits } from "./types";
 import type { TooltipInstance } from "../Tooltip";
-
+import { useLocale } from "@kiyo-element/hooks";
 import KiyoButton from "../Button/Button.vue";
 import KiyoIcon from "../Icon/Icon.vue";
 import KiyoTooltip from "../Tooltip/Tooltip.vue";
@@ -24,6 +24,8 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
 const emits = defineEmits<PopconfirmEmits>();
 const tooltipRef = ref<TooltipInstance>();
 const style = computed(() => ({ width: addUnit(props.width) })); //给width加px单位
+
+const { t } = useLocale();
 
 function hidePopper() {
   tooltipRef.value?.hide();
@@ -57,7 +59,7 @@ function cancel(e: MouseEvent) {
             :type="cancelButtonType"
             @click="cancel"
           >
-            {{ cancelButtonText ?? "取消" }}
+            {{ cancelButtonText ?? t("popconfirm.cancelButtonText") }}
           </kiyo-button>
           <kiyo-button
             size="small"
@@ -65,18 +67,15 @@ function cancel(e: MouseEvent) {
             :type="confirmButtonType"
             @click="confirm"
           >
-            {{ confirmButtonText ?? "确定" }}
+            {{ confirmButtonText ?? t("popconfirm.confirmButtonText") }}
           </kiyo-button>
         </div>
       </div>
     </template>
 
-    <template v-if="$slots.default" #default>
-      <slot name="default"></slot>
-    </template>
-
-    <template v-if="$slots.reference" #default>
-      <slot name="reference"></slot>
+    <template #default>
+      <slot v-if="$slots.default" name="default" />
+      <slot v-else-if="$slots.reference" name="reference" />
     </template>
   </kiyo-tooltip>
 </template>

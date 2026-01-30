@@ -11,6 +11,9 @@ importers:
       '@kiyo-element/hooks':
         specifier: workspace:*
         version: link:packages/hooks
+      '@kiyo-element/locale':
+        specifier: workspace:*
+        version: link:packages/locale
       '@kiyo-element/theme':
         specifier: workspace:*
         version: link:packages/theme
@@ -123,6 +126,9 @@ importers:
       vue-tsc:
         specifier: 1.8.27
         version: 1.8.27(typescript@5.2.2)
+      vue3-i18n:
+        specifier: ^1.1.5
+        version: 1.1.5(vue@3.5.27(typescript@5.2.2))
 
   _node_modules/vite-plugins: {}
 
@@ -223,6 +229,8 @@ importers:
       vue:
         specifier: ^3.5.27
         version: 3.5.27(typescript@5.9.3)
+
+  packages/locale: {}
 
   packages/play:
     dependencies:
@@ -5290,6 +5298,11 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '*'
+
+  vue3-i18n@1.1.5:
+    resolution: {integrity: sha512-DN5XfE0z6BnFxjbP/qW8AKI5QCex97L2l8z7G76ccTkfTsJ18n4mXGCy4K9H2rm4FlzDx/USPlPqQK64yXQqDg==}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue@3.5.27:
     resolution: {integrity: sha512-aJ/UtoEyFySPBGarREmN4z6qNKpbEguYHMmXSiOGk69czc+zhs0NF6tEFrY8TZKAl8N/LYAkd4JHVd5E/AsSmw==}
@@ -10846,6 +10859,10 @@ snapshots:
       '@vue/language-core': 1.8.27(typescript@5.9.3)
       semver: 7.7.3
       typescript: 5.9.3
+
+  vue3-i18n@1.1.5(vue@3.5.27(typescript@5.2.2)):
+    dependencies:
+      vue: 3.5.27(typescript@5.2.2)
 
   vue@3.5.27(typescript@5.2.2):
     dependencies:
