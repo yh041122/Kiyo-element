@@ -1,0 +1,81 @@
+.kiyo-message {
+  --kiyo-message-bg-color: var(--kiyo-color-info-light-9);
+  --kiyo-message-border-color: var(--kiyo-border-color-lighter);
+  --kiyo-message-padding: 15px 19px;
+  --kiyo-message-close-size: 16px;
+  --kiyo-message-close-icon-color: var(--kiyo-text-color-placeholder);
+  --kiyo-message-close-hover-color: var(--kiyo-text-color-secondary);
+  --kiyo-message-icon-size: 16px;
+  --kiyo-message-icon-margin: 8px;
+}
+
+.kiyo-message {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: var(--kiyo-border-radius-base);
+  border-width: var(--kiyo-border-width);
+  border-style: var(--kiyo-border-style);
+  border-color: var(--kiyo-message-border-color);
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: var(--kiyo-message-bg-color);
+  padding: var(--kiyo-message-padding);
+  display: flex;
+  align-items: center;
+  transition:
+    top var(--kiyo-transition-duration),
+    opacity var(--kiyo-transition-duration),
+    transform var(--kiyo-transition-duration);
+  .kiyo-message__icon {
+    color: var(--kiyo-message-text-color);
+    font-size: var(--kiyo-message-icon-size);
+    width: var(--kiyo-message-icon-size);
+    margin-right: var(--kiyo-message-icon-margin);
+  }
+  .kiyo-message__content {
+    color: var(--kiyo-message-text-color);
+    overflow-wrap: break-word;
+  }
+  &.is-close .kiyo-message__content {
+    padding-right: 10px;
+  }
+  &.text-center {
+    justify-content: center;
+  }
+  .kiyo-message__close {
+    display: flex;
+    align-items: center;
+  }
+  .kiyo-message__close .kiyo-icon {
+    cursor: pointer;
+  }
+}
+
+@each $val in info, success, warning, danger {
+  .kiyo-message--$(val) {
+    --kiyo-message-bg-color: var(--kiyo-color-$(val)-light-9);
+    --kiyo-message-border-color: var(--kiyo-color-$(val)-light-8);
+    --kiyo-message-text-color: var(--kiyo-color-$(val));
+    .kiyo-message__close {
+      --kiyo-icon-color: var(--kiyo-color-$(val));
+    }
+  }
+}
+
+.kiyo-message--kiyoror {
+  --kiyo-message-bg-color: var(--kiyo-color-danger-light-9);
+  --kiyo-message-border-color: var(--kiyo-color-danger-light-8);
+  --kiyo-message-text-color: var(--kiyo-color-danger);
+  .kiyo-message__close {
+    --kiyo-icon-color: var(--kiyo-color-danger);
+  }
+}
+
+.kiyo-message.fade-up-enter-from,
+.kiyo-message.fade-up-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

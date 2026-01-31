@@ -9,6 +9,7 @@ import {
   KiyoPopconfirm,
   KiyoDropdown,
   KiyoDropdownItem,
+  KiyoMessage,
 } from "@kiyo-element/components";
 import type { Plugin } from "vue";
 
@@ -23,4 +24,5 @@ export default [
   KiyoPopconfirm,
   KiyoDropdown,
   KiyoDropdownItem,
+  KiyoMessage,
 ] as Plugin[];

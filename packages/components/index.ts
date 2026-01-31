@@ -7,3 +7,4 @@ export * from "./Tooltip";
 export * from "./Popconfirm";
 export * from "./Dropdown";
 export * from "./ConfigProvider";
+export * from "./Message";
