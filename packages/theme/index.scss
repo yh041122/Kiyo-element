@@ -36,6 +36,7 @@
   --kiyo-fill-color-blank: #ffffff;
 
   // 使用 SCSS @each 和 @for 循环
+  //scss的Map $变量名(键:值,键:值,)
   $colors: (
     primary: #409eff,
     success: #67c23a,
@@ -49,15 +50,15 @@
 
     @for $i from 3 through 9 {
       // 计算混合颜色（light 版本）
-      // $light-percentage: percentage($i / 10);
+      //math.div是除法
       $light-percentage: math.percentage(math.div($i, 10));
-      // $light-color: mix(#fff, $color, $light-percentage);
+      //color.mix(A,B,%)是颜色混合函数，%是A占的比例
       $light-color: color.mix(#fff, $color, $light-percentage);
+      //为每个type色，生成一组渐变颜色
+      //--kiyo-color-success-light-3
       --kiyo-color-#{$val}-light-#{$i}: #{$light-color};
     }
-
     // 计算深色版本
-    // $dark-color: mix(#000, $color, 20%);
     $dark-color: color.mix(#000, $color, 20%);
     --kiyo-color-#{$val}-dark-2: #{$dark-color};
   }

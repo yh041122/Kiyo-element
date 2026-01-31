@@ -36,6 +36,7 @@ const { topOffset, bottomOffset } = useOffset({
 //样式
 const customStyle = computed(() => ({
   top: addUnit(topOffset.value), //加单位
+  zIndex: props.zIndex,
 }));
 
 //定时器

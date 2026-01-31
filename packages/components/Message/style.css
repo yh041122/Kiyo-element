@@ -65,7 +65,7 @@
   }
 }
 
-.kiyo-message--kiyoror {
+.kiyo-message--error {
   --kiyo-message-bg-color: var(--kiyo-color-danger-light-9);
   --kiyo-message-border-color: var(--kiyo-color-danger-light-8);
   --kiyo-message-text-color: var(--kiyo-color-danger);

@@ -37,7 +37,7 @@ const changelang = () => {
 </template> -->
 
 <!-- message -->
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
 import { KiyoMessage } from "kiyo-element";
 
 const open1 = () => {
@@ -56,7 +56,7 @@ const open3 = () => {
   });
 };
 const open4 = () => {
-  KiyoMessage.danger("Oops, this is a error message.");
+  KiyoMessage.error("Oops, this is a error message.");
 };
 </script>
 
@@ -65,4 +65,35 @@ const open4 = () => {
   <kiyo-button :plain="true" @click="open3">Warning</kiyo-button>
   <kiyo-button :plain="true" @click="open1">Message</kiyo-button>
   <kiyo-button :plain="true" @click="open4">Error</kiyo-button>
+</template> -->
+
+<!-- notification -->
+<script setup lang="ts">
+import { h } from "vue";
+import { KiyoNotification } from "kiyo-element";
+
+function openNotify1() {
+  KiyoNotification({
+    title: "Title",
+    message: h("i", { style: "color:teal" }, "This is a remider"),
+    position: "bottom-right",
+    type: "success",
+  });
+}
+
+function openNotify2() {
+  KiyoNotification({
+    title: "Prompt",
+    message: "This is a message that does not auto close",
+    duration: 0,
+    position: "top-left",
+  });
+}
+</script>
+
+<template>
+  <kiyo-button @click="openNotify1" plain>Closes automatically</kiyo-button>
+  <kiyo-button @click="openNotify2" plain
+    >Won't closes automatically</kiyo-button
+  >
 </template>
