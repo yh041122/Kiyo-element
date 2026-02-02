@@ -9,3 +9,6 @@ export * from "./Dropdown";
 export * from "./ConfigProvider";
 export * from "./Message";
 export * from "./Notification";
+export * from "./MessageBox";
+export * from "./Input";
+export * from "./Loading";

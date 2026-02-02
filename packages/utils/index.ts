@@ -26,3 +26,5 @@ export * from "./install";
 export * from "./error";
 //导出px检测工具
 export * from "./style";
+
+export * from "./test";

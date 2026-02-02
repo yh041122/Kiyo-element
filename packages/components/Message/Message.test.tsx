@@ -1,17 +1,8 @@
-import { describe, test, expect } from "vitest";
-import { nextTick } from "vue";
+import { describe, test, expect, afterEach } from "vitest";
 import { message, closeAll } from "./methods.ts";
 //渲染等待工具 确保在浏览器完成绘制且 Vue 完成 DOM 更新后才继续执行。
-export const rAF = async () => {
-  return new Promise((res) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(async () => {
-        res(null);
-        await nextTick();
-      });
-    });
-  });
-};
+import { rAF } from "@kiyo-element/utils";
+
 // 辅助函数：获取元素的 top 值
 function getTopValue(element: Element) {
   const styles = window.getComputedStyle(element);
@@ -20,6 +11,10 @@ function getTopValue(element: Element) {
 }
 
 describe("createMessage", () => {
+  afterEach(() => {
+    closeAll(); // 每个测试后清理所有 message
+    document.body.innerHTML = ""; // 强制清理 DOM
+  });
   test("调用方法应该创建对应的 Message 组件", async () => {
     const handler = message({ message: "hello msg", duration: 0 }); //开启Message duration：0表示不消失
     await rAF();

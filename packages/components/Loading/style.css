@@ -1,0 +1,52 @@
+.kiyo-loading {
+  --kiyo-loading-icon-color: var(--kiyo-color-primary);
+  --kiyo-loading-mask-margin: 0;
+  --kiyo-loading-mask-size: 100%;
+  --kiyo-loading-icon-size: 42px;
+  --kiyo-loading-font-size: 14px;
+  --kiyo-loading-z-index: 20000;
+}
+.kiyo-loading {
+  opacity: 1;
+  transition: opacity var(--kiyo-transition-duration);
+  &.kiyo-loading__mask {
+    position: absolute;
+    margin: var(--kiyo-loading-mask-margin);
+    top: var(--kiyo-loading-mask-margin);
+    right: var(--kiyo-loading-mask-margin);
+    bottom: var(--kiyo-loading-mask-margin);
+    left: var(--kiyo-loading-mask-margin);
+    height: var(--kiyo-loading-mask-size);
+    width: var(--kiyo-loading-mask-size);
+    z-index: var(--kiyo-loading-z-index);
+    background: var(--kiyo-loading-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.is-fullscreen {
+      position: fixed;
+    }
+  }
+  .kiyo-loading__spinner {
+    color: var(--kiyo-loading-icon-color);
+    text-align: center;
+    .kiyo-loading-text {
+      margin: 3px 0;
+      font-size: var(--kiyo-loading-font-size);
+    }
+    i {
+      font-size: var(--kiyo-loading-icon-size);
+    }
+  }
+}
+.fade-in-linear-enter-from,
+.fade-in-linear-leave-to {
+  opacity: 0;
+}
+/* 因为这两个 不使用样式隔离 */
+.kiyo-loading-parent--relative {
+  position: relative !important;
+}
+.kiyo-loading-parent--hiden {
+  overflow: hidden !important;
+}
