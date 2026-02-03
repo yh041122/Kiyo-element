@@ -13,6 +13,7 @@ import {
   KiyoNotification,
   KiyoMessageBox,
   KiyoInput,
+  KiyoSwitch,
   KiyoLoading,
 } from "@kiyo-element/components";
 import type { Plugin } from "vue";
@@ -32,5 +33,6 @@ export default [
   KiyoNotification,
   KiyoMessageBox,
   KiyoInput,
+  KiyoSwitch,
   KiyoLoading,
 ] as Plugin[];

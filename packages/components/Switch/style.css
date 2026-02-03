@@ -1,0 +1,136 @@
+.kiyo-switch {
+  --kiyo-switch-on-color: var(--kiyo-color-primary);
+  --kiyo-switch-off-color: var(--kiyo-border-color);
+  --kiyo-switch-on-border-color: var(--kiyo-color-primary);
+  --kiyo-switch-off-border-color: var(--kiyo-border-color);
+}
+
+.kiyo-switch {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  height: 32px;
+  .kiyo-switch__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0;
+    /* 新增：重置所有默认聚焦样式 */
+    outline: none;
+    border: none;
+    box-shadow: none;
+    /* 新增：防止点击时触发原生聚焦高亮 */
+    -webkit-appearance: none;
+    appearance: none;
+    &:focus-visible {
+      & ~ .kiyo-switch__core {
+        outline: 2px solid var(--kiyo-switch-on-color);
+        outline-offset: 1px;
+      }
+    }
+  }
+  &.is-disabled {
+    opacity: 0.6;
+    .kiyo-switch__core {
+      cursor: not-allowed;
+    }
+  }
+  &.is-checked {
+    .kiyo-switch__core {
+      border-color: var(--kiyo-switch-on-border-color);
+      background-color: var(--kiyo-switch-on-color);
+      .kiyo-switch__core-action {
+        left: calc(100% - 17px);
+      }
+      .kiyo-switch__core-inner {
+        padding: 0 18px 0 4px;
+      }
+    }
+  }
+}
+
+.kiyo-switch--large {
+  font-size: 14px;
+  line-height: 24px;
+  height: 40px;
+  .kiyo-switch__core {
+    min-width: 50px;
+    height: 24px;
+    border-radius: 12px;
+    .kiyo-switch__core-action {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &.is-checked {
+    .kiyo-switch__core .kiyo-switch__core-action {
+      left: calc(100% - 21px);
+      color: var(--kiyo-switch-on-color);
+    }
+  }
+}
+.kiyo-switch--small {
+  font-size: 12px;
+  line-height: 16px;
+  height: 24px;
+  .kiyo-switch__core {
+    min-width: 30px;
+    height: 16px;
+    border-radius: 8px;
+    .kiyo-switch__core-action {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  &.is-checked {
+    .kiyo-switch__core .kiyo-switch-core-action {
+      left: calc(100% - 13px);
+      color: var(--kiyo-switch-on-color);
+    }
+  }
+}
+
+.kiyo-switch__core {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  height: 20px;
+  min-width: 40px;
+  border: 1px solid var(--kiyo-switch-off-border-color);
+  outline: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: var(--kiyo-switch-off-color);
+  transition:
+    border-color var(--kiyo-transition-duration),
+    background-color var(--kiyo-transition-duration);
+  .kiyo-switch__core-action {
+    position: absolute;
+    border-radius: var(--kiyo-border-radius-circle);
+    left: 1px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--kiyo-color-white);
+    transition: all var(--kiyo-transition-duration);
+  }
+  .kiyo-switch__core-inner {
+    width: 100%;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 4px 0 18px;
+    .kiyo-switch__core-inner-text {
+      font-size: 12px;
+      color: var(--kiyo-color-white);
+      user-select: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

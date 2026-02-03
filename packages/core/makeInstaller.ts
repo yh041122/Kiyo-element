@@ -6,6 +6,7 @@ import {
 } from "@kiyo-element/components";
 export function makeInstaller(components: Plugin[]) {
   const installer = (app: App, opts?: ConfigProviderProps) => {
+    //调用所有组件 安装到vue实例中
     each(components, (component) => {
       app.use(component);
     });

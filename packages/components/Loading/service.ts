@@ -51,13 +51,36 @@ function removeHidenClass(target: HTMLElement = document.body) {
 }
 function addClass(opts: LoadingOptions, target: HTMLElement = document.body) {
   if (opts.lock) {
+    // 锁定滚动
     addHidenClass(target);
   } else {
     removeHidenClass(target);
   }
   addRelativeClass(target);
 }
+//处理options
+function resolveOptions(options: LoadingOptions): LoadingOptionsResolved {
+  //函数式调用 target是body，指令式调用 target是具体节点
+  let target: HTMLElement; //挂载loading的目标节点
+  if (isString(options.target)) //如果传来的是css选择器
+  {
+    target = document.querySelector(options.target) ?? document.body; //如果没有找到目标节点，默认是body
+  } else {
+    target = options.target ?? document.body; //如果传来的是具体节点，直接赋值
+  }
 
+  return {
+    //还差两个函数
+    parent: target === document.body || options.body ? document.body : target, //如果是body或者指令式？(好像是函数式)调用，挂载到body上
+    background: options.background ?? "rgba(0, 0, 0, 0.5)", //默认背景颜色
+    spinner: options.spinner, //旋转
+    text: options.text,
+    fullscreen: target === document.body && (options.fullscreen ?? true), //如果是body，默认全屏
+    lock: options.lock ?? false, //锁定滚动
+    visible: options.visible ?? true,
+    target,
+  };
+}
 //创建Loading
 function createLoading(opts: LoadingOptionsResolved) {
   const visible = ref(opts.visible);
@@ -89,6 +112,7 @@ function createLoading(opts: LoadingOptionsResolved) {
       removeRelativeClass(target!);
     }, 1);
     instanceMap.delete(target ?? document.body);
+    //$el指向loading实例的根元素
     vm.$el.parentNode?.removeChild(vm.$el);
     app.unmount();
   };
@@ -101,7 +125,7 @@ function createLoading(opts: LoadingOptionsResolved) {
     afterLeaveTimer = delay(handleAfterLeave, 500); //?
 
     visible.value = false;
-    opts.closed?.();
+    opts.closed?.(); //执行用户传入的closed函数
   };
   return {
     get $el(): HTMLElement {
@@ -114,31 +138,9 @@ function createLoading(opts: LoadingOptionsResolved) {
     setText,
   };
 }
-//处理options
-function resolveOptions(options: LoadingOptions): LoadingOptionsResolved {
-  //函数式调用 target是body，指令式调用 target是具体节点
-  let target: HTMLElement; //挂载loading的目标节点
-  if (isString(options.target)) //如果传来的是css选择器
-  {
-    target = document.querySelector(options.target) ?? document.body; //如果没有找到目标节点，默认是body
-  } else {
-    target = options.target ?? document.body; //如果传来的是具体节点，直接赋值
-  }
-
-  return {
-    parent: target === document.body || options.body ? document.body : target, //如果是body或者指令式调用，挂载到body上
-    background: options.background ?? "rgba(0, 0, 0, 0.5)", //默认背景颜色
-    spinner: options.spinner, //旋转
-    text: options.text,
-    fullscreen: target === document.body && (options.fullscreen ?? true), //如果是body，默认全屏
-    lock: options.lock ?? false, //锁定滚动
-    visible: options.visible ?? true,
-    target,
-  };
-}
 //loading实例类型
 export type LoadingInstance = ReturnType<typeof createLoading>;
-//全屏loading实例
+//全屏loading实例  如果是挂载到body上，就只有一个全屏loading实例
 let fullscreenInstance: LoadingInstance | null = null;
 //返回的实例类型
 export function Loading(options: LoadingOptions = {}): LoadingInstance {
@@ -146,6 +148,7 @@ export function Loading(options: LoadingOptions = {}): LoadingInstance {
   const target = resolved.parent ?? document.body;
 
   if (resolved.fullscreen && !isNil(fullscreenInstance))
+    //单例
     return fullscreenInstance; //如果是全屏loading，返回全屏实例
 
   //增加 loading number

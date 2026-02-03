@@ -40,7 +40,7 @@ function createInstance(
     instance: Loading(options),
   };
 }
-
+//loading指令
 export const vLoading: Directive<ElementLoading, boolean> = {
   mounted(el, binding) {
     if (binding.value) createInstance(el, binding);
@@ -49,6 +49,7 @@ export const vLoading: Directive<ElementLoading, boolean> = {
     if (binding.oldValue === binding.value) return;
 
     if (binding.value && !binding.oldValue) {
+      //如果是新增指令，创建实例
       createInstance(el, binding);
       return;
     }

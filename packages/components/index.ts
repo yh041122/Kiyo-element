@@ -12,3 +12,4 @@ export * from "./Notification";
 export * from "./MessageBox";
 export * from "./Input";
 export * from "./Loading";
+export * from "./Switch";

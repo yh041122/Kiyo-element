@@ -119,7 +119,7 @@ import { ref } from "vue";
 import { KiyoLoading } from "kiyo-element";
 
 const loading = ref(false);
-
+const switchS = ref(false);
 function openLoading1() {
   loading.value = true;
   setTimeout(() => {
@@ -149,4 +149,5 @@ function openLoading2() {
     As a directive
   </kiyo-button>
   <kiyo-button type="primary" @click="openLoading2"> As a service </kiyo-button>
+  <kiyo-switch v-model="switchS" />
 </template>

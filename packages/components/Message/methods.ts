@@ -57,7 +57,7 @@ function createMessage(props: CreateMessageProps): MessageInstance {
   const vnode = h(MessageConstructor, _props);
 
   render(vnode, container);
-
+  //挂载vnode到body
   document.body.appendChild(container.firstElementChild!);
 
   const vm = vnode.component!;

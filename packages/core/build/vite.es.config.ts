@@ -15,11 +15,12 @@ const isTest = process.env.NODE_ENV === "test";
 const TRY_MOVE_STYLE_DELAY = 800 as const;
 
 function getDirectoriesSync(basePath: string) {
+  // 读取目录下所有文件和文件夹
   const entries = readdirSync(basePath, { withFileTypes: true });
 
   return map(
-    filter(entries, (entry) => entry.isDirectory()),
-    (entry) => entry.name,
+    filter(entries, (entry) => entry.isDirectory()), //只保留文件夹
+    (entry) => entry.name, //返回文件夹名['button','switch']
   );
 }
 
@@ -46,7 +47,12 @@ export default defineConfig({
       outDir: "dist/types",
     }),
     hooks({
-      rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
+      rmFiles: [
+        "./dist/es",
+        "./dist/theme",
+        "./dist/types",
+        "./dist/stas.es.html",
+      ],
       afterBuild: moveStyles,
     }),
     terser({

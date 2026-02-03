@@ -6,9 +6,11 @@
   --kiyo-loading-font-size: 14px;
   --kiyo-loading-z-index: 20000;
 }
+
 .kiyo-loading {
   opacity: 1;
   transition: opacity var(--kiyo-transition-duration);
+  /* 遮罩层 */
   &.kiyo-loading__mask {
     position: absolute;
     margin: var(--kiyo-loading-mask-margin);
