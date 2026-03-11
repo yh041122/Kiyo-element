@@ -8,7 +8,7 @@ defineOptions({
   name: "KiyoDropdownItem",
 });
 const props = withDefaults(defineProps<DropdownItemProps>(), {
-  divided: false,
+  divided: false, //是否显示分割线
   disabled: false,
   command: useId().value,
 });

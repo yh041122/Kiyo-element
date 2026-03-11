@@ -4,10 +4,10 @@ export interface TooltipProps {
   content?: string; //提示框内容
   trigger?: "hover" | "click" | "contextmenu";
   placement?: Placement; //提示框位置
-  manual?: boolean;
+  manual?: boolean; //手动控制显示
   disabled?: boolean;
   popperOptions?: Partial<Options>; //popperjs选项
-  transition?: string; //过渡动画
+  transition?: string; //过渡动画名称
   showTimeout?: number; //显示延迟时间
   hideTimeout?: number; //隐藏延迟时间
 }

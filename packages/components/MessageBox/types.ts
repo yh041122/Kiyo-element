@@ -3,7 +3,7 @@ import { type messageType } from "../Message/types";
 import { type ButtonType } from "../Button/types";
 
 export type MessageBoxAction = "confirm" | "cancel" | "close"; //确认取消关闭
-export type MessageBoxType = "" | "prompt" | "alert" | "confirm"; //消息框类型
+export type MessageBoxType = "" | "prompt" | "alert" | "confirm"; //输入框、警告框、确认框
 export type MessageBoxCallback = (
   action: MessageBoxAction | { value: string; action: MessageBoxAction },
 ) => void;
@@ -31,11 +31,9 @@ export interface MessageBoxOptions {
   confirmButtonLoading?: boolean;
   cancelButtonDisabled?: boolean;
   confirmButtonDisabled?: boolean;
-
   cancelButtonType?: ButtonType;
   confirmButtonType?: ButtonType;
   roundButton?: boolean;
-
   center?: boolean;
   lockScroll?: boolean;
   closeOnClickModal?: boolean;
@@ -60,6 +58,7 @@ export interface MessageBoxProps extends MessageBoxOptions {
 }
 
 export type MessageBoxShortcutMethod = ((
+  //输入框、警告框、确认框的快捷方法
   message: MessageBoxOptions["message"],
   title: MessageBoxOptions["title"],
   options?: MessageBoxOptions,

@@ -46,7 +46,7 @@
   padding: 8px 15px;
   font-size: var(--kiyo-font-size-base);
   border-radius: var(--kiyo-border-radius-base);
-
+  //相邻的button 从第二个开始的左间距
   & + & {
     margin-left: 12px;
   }

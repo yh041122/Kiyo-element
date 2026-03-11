@@ -14,15 +14,15 @@ export interface DropdownItemProps {
 export interface DropdownProps extends TooltipProps {
   type?: ButtonType;
   size?: ButtonSize;
-  items?: DropdownItemProps[];
-  hideOnClick?: boolean;
-  splitButton?: boolean;
+  items?: DropdownItemProps[]; //下拉菜单项目
+  hideOnClick?: boolean; //点击菜单项后是否隐藏下拉菜单
+  splitButton?: boolean; //是否为分割按钮
 }
 
 export interface DropdownEmits {
   (e: "visible-change", value: boolean): void;
-  (e: "command", value: DropdownCommand): void;
-  (e: "click", value: MouseEvent): void;
+  (e: "command", value: DropdownCommand): void; //点击菜单项时触发
+  (e: "click", value: MouseEvent): void; //	split-buttton 为 true 时,点击左侧按钮触发
 }
 
 export interface DropdownInstance {

@@ -33,7 +33,7 @@ function handleClick() {
     <!-- header -->
     <div
       class="kiyo-collapse-item__header"
-      :id="`item-headkiyo-${name}`"
+      :id="`item-header-${name}`"
       :class="{
         'is-disabled': disabled,
         'is-active': isActive,

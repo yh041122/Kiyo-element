@@ -17,6 +17,7 @@ export const RenderVnode = defineComponent({
     },
   },
   setup(props) {
+    //
     //判断是否是函数，如果是函数则调用函数返回结果，否则直接返回vNode
     return () => (isFunction(props.vNode) ? props.vNode() : props.vNode);
   },

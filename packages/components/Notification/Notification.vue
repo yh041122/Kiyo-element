@@ -43,7 +43,7 @@ const horizontalClass = computed(() =>
 const verticaProperty = computed(() =>
   props.position.startsWith("top") ? "top" : "bottom",
 );
-//样式
+//上下偏移
 const customStyle = computed(() => ({
   [verticaProperty.value]: addUnit(topOffset.value), //加单位
   zIndex: props.zIndex,

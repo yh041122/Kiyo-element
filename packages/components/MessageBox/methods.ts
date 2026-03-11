@@ -31,13 +31,14 @@ const messageInstanceMap = new Map<
     reject: (res: any) => void;
   }
 >();
-//初始化实例
+//创建组件实例
 function initInstance(props: MessageBoxProps, container: HTMLElement) {
+  //数据
   const visible = ref(false);
   const isVNodeMsg = isFunction(props?.message) || isVNode(props?.message);
   const genDefaultSlot = (message: VNode | (() => VNode)) =>
     isFunction(message) ? message : () => message;
-
+  //创建vnode
   const vnode = createVNode(
     MessageBoxConstructor,
     {
@@ -46,14 +47,16 @@ function initInstance(props: MessageBoxProps, container: HTMLElement) {
     } as VNodeProps,
     isVNodeMsg ? { default: genDefaultSlot(props.message as VNode) } : void 0,
   );
+  //渲染vnode
   render(vnode, container);
   document.body.appendChild(container.firstElementChild!);
-  return vnode.component; //component是什么
+  return vnode.component; //返回组件实例
 }
-//创建消息
+//显示对话框
 function createMessage(options: MessageBoxOptions) {
   const container = document.createElement("div"); //容器
   const props: MessageBoxProps = {
+    //合并options和默认配置
     ...options,
     doClose: () => {
       vm.visible.value = false;
@@ -63,7 +66,7 @@ function createMessage(options: MessageBoxOptions) {
       let resolve:
         | MessageBoxAction
         | { value: string; action: MessageBoxAction };
-      nextTick(() => vm.doClose());
+      nextTick(() => vm.doClose()); //关闭
       if (options.showInput) {
         //如果显示输入框
         resolve = { action, value: inputVal }; //把value放进去
@@ -89,18 +92,19 @@ function createMessage(options: MessageBoxOptions) {
       messageInstanceMap.delete(vm);
     },
   };
-  const instance = initInstance(props as MessageBoxProps, container);
-  //为什么有proxy
+  const instance = initInstance(props as MessageBoxProps, container); //初始化组件实例
+  //为什么有proxy 因为要获取到响应式数据 所以不用instance.exposed
   const vm = instance?.proxy as ComponentPublicInstance<{
     doClose: () => void;
     visible: Ref<boolean>;
   }>;
-  vm.visible.value = true;
+  vm.visible.value = true; //显示
   return vm;
 }
 
 //重构
 async function MessageBox(options: MessageBoxOptions): Promise<MessageBoxData>;
+//主函数
 function MessageBox(
   // options参数
   options: MessageBoxOptions | string | VNode,
@@ -114,7 +118,7 @@ function MessageBox(
   } else {
     callback = options.callback;
   }
-
+  //等待用户doAction 所以是异步的
   return new Promise((resolve, reject) => {
     const vm = createMessage(options);
     messageInstanceMap.set(vm, { options, callback, resolve, reject });
@@ -131,11 +135,15 @@ const MESSAGE_BOX_DEFAULT_OPTS: Record<
   confirm: { showCancelButton: true },
   prompt: { showCancelButton: true, showInput: true },
 };
-each(MESSAGE_BOX_VARIANTS, (type) =>
-  set(MessageBox, type, messageBoxFactory(type)),
+each(
+  MESSAGE_BOX_VARIANTS,
+  (type) =>
+    //为每个消息框类型设置工厂函数
+    set(MessageBox, type, messageBoxFactory(type)), //MessageBox.alert、MessageBox.confirm、MessageBox.prompt
 );
-
+//创建消息框工厂函数
 function messageBoxFactory(boxType: (typeof MESSAGE_BOX_VARIANTS)[number]) {
+  //跟MessageBox一样都是函数
   return (
     message: string | VNode,
     title: string | MessageBoxOptions,
@@ -158,14 +166,14 @@ function messageBoxFactory(boxType: (typeof MESSAGE_BOX_VARIANTS)[number]) {
           message,
           type: "",
           boxType,
-          ...MESSAGE_BOX_DEFAULT_OPTS[boxType],
+          ...MESSAGE_BOX_DEFAULT_OPTS[boxType], //类型对应的配置
         },
         options,
       ),
     );
   };
 }
-
+//关闭所有消息框
 set(MessageBox, "close", () => {
   messageInstanceMap.forEach((_, vm) => {
     vm.doClose();

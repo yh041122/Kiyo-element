@@ -48,10 +48,11 @@
 }
 /* 内容区域 */
 .kiyo-collapse-item__content {
+  /* 提前告知浏览器：当前元素的 height 样式即将发生动态变化 */
   will-change: height;
   background-color: var(--kiyo-collapse-content-bg-color);
   overflow: hidden;
-  box-sizing: bordkiyo-box;
+  box-sizing: border-box;
   font-size: var(--kiyo-collapse-content-font-size);
   color: var(--kiyo-collapse-content-text-color);
   border-bottom: 1px solid var(--kiyo-collapse-border-color);

@@ -27,19 +27,19 @@ watchEffect(() => {
 });
 //点击事件
 function handleItemClick(item: CollapseItemName) {
-  let _activeNames = [...activeNames.value];
+  let _activeNames = [...activeNames.value]; //当前展开的面板项名称数组的副本
   //手风琴模式
   if (props.accordion) {
-    _activeNames = [_activeNames[0] === item ? "" : item];
+    _activeNames = [_activeNames[0] === item ? "" : item]; //存在 则切换为"" 不存在 则添加
     updateActiveNames(_activeNames);
     return;
   }
   //正常模式
   const index = _activeNames.indexOf(item);
   if (index > -1) {
-    _activeNames.splice(index, 1);
+    _activeNames.splice(index, 1); //存在 则删除
   } else {
-    _activeNames.push(item);
+    _activeNames.push(item); //不存在 则添加
   }
   updateActiveNames(_activeNames);
 }
@@ -57,7 +57,7 @@ watch(
 );
 //依赖注入
 provide(COLLAPSE_CTX_KEY, {
-  activeNames,
+  activeNames, //当前展开的面板项名称数组
   handleItemClick,
 });
 </script>

@@ -4,6 +4,7 @@ import { ref, computed, watch, shallowRef, nextTick, useAttrs } from "vue";
 import { useFocusController, useId } from "@kiyo-element/hooks";
 import Icon from "../Icon/Icon.vue"; //图标
 import { noop, each } from "lodash-es";
+// import { useFormItem } from "../Form";
 defineOptions({
   name: "KiyoInput",
   inheritAttrs: false,
@@ -25,6 +26,7 @@ const textareaRef = shallowRef<HTMLTextAreaElement>();
 const _ref = computed(() => inputRef.value || textareaRef.value);
 const isDisabled = computed(() => props.disabled);
 const attrs = useAttrs();
+// const { formItem } = useFormItem();
 const showClear = computed(
   //清空按钮的显示
   () =>
@@ -50,6 +52,8 @@ const { isFocused, handleBlur, handleFocus, wrapperRef } = useFocusController(
     },
     afterBlur() {
       //form校验
+
+      formItem?.validate("blur").catch((err) => debugWarn(err));
     },
   },
 );
@@ -59,6 +63,7 @@ const clear: InputInstance["clear"] = () => {
   innerValue.value = "";
   each(["input", "change", "update:modelValue"], (e) => emits(e as any, ""));
   emits("clear");
+  formItem?.clearValidate();
 };
 const focus: InputInstance["focus"] = async () => {
   //聚焦 promise
@@ -76,10 +81,12 @@ const select: InputInstance["select"] = async () => {
   _ref.value?.select();
 };
 function handleInput() {
+  //输入事件触发
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
 }
 function handleChange() {
+  //失焦后触发
   emits("change", innerValue.value);
 }
 function togglePwdVisible() {
@@ -92,6 +99,7 @@ watch(
   (newValue) => {
     innerValue.value = newValue;
     //表单检验触发
+    formItem?.validate("change").catch((err) => debugWarn(err));
   },
 );
 //暴露
@@ -122,11 +130,12 @@ defineExpose<InputInstance>({
       <div v-if="$slots.prepend" class="kiyo-input__prepend">
         <slot name="prepend"></slot>
       </div>
-      <div class="kiyo-input_wrapper" ref="wrapperRef">
+      <div class="kiyo-input__wrapper" ref="wrapperRef">
         <!-- 前缀 -->
         <span v-if="$slots.prefix" class="kiyo-input__prefix">
           <slot name="prefix"></slot>
         </span>
+        <!-- 输入框 -->
         <input
           :id="useId().value"
           ref="inputRef"

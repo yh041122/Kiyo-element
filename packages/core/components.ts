@@ -15,6 +15,7 @@ import {
   KiyoInput,
   KiyoSwitch,
   KiyoLoading,
+  KiyoSelect,
 } from "@kiyo-element/components";
 import type { Plugin } from "vue";
 
@@ -35,4 +36,5 @@ export default [
   KiyoInput,
   KiyoSwitch,
   KiyoLoading,
+  KiyoSelect,
 ] as Plugin[];

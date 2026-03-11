@@ -2,7 +2,7 @@ import { describe, test, expect } from "vitest";
 import { notification } from "./methods.ts";
 //渲染等待工具 确保在浏览器完成绘制且 Vue 完成 DOM 更新后才继续执行。
 import { rAF } from "@kiyo-element/utils";
-
+//获取元素的 top 值
 function getTopValue(element: Element) {
   const styles = window.getComputedStyle(element);
   const topValue = styles.getPropertyValue("top");

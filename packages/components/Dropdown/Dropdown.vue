@@ -22,7 +22,7 @@ defineOptions({
 });
 const props = withDefaults(defineProps<DropdownProps>(), {
   hideOnClick: true,
-  items: () => [] as DropdownItemProps[],
+  items: () => [] as DropdownItemProps[], //props传递的菜单项
 });
 const emits = defineEmits<DropdownEmits>();
 const slots = defineSlots();
@@ -64,6 +64,7 @@ provide<DropdownContext>(DROPDOWN_CTX_KEY, {
       :virtual-ref="triggerRef"
       @visible-change="$emit('visible-change', $event)"
     >
+      <!-- 按钮组触发节点 -->
       <kiyo-button-group
         :type="type"
         :size="size"
@@ -75,10 +76,12 @@ provide<DropdownContext>(DROPDOWN_CTX_KEY, {
         </kiyo-button>
         <kiyo-button ref="triggerRef" icon="angle-down" />
       </kiyo-button-group>
+      <!-- 下拉菜单触发节点 -->
       <slot v-else name="default"></slot>
 
       <template #content>
         <ul class="kiyo-dropdown__menu">
+          <!-- 下拉菜单内容 -->
           <slot name="dropdown">
             <template
               v-for="item in items"

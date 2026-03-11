@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<MessageBoxProps>(), {
 });
 //解构
 const { doAction } = props;
-const { nextZindex } = useZindex(); //返回++后的z-index
+const { nextZindex } = useZindex();
 
 //ref
 const headerRef = ref<HTMLElement>();

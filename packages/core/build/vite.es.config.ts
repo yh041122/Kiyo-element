@@ -43,8 +43,8 @@ export default defineConfig({
       filename: "dist/stats.es.html",
     }),
     dts({
-      tsconfigPath: "../../tsconfig.build.json",
-      outDir: "dist/types",
+      tsconfigPath: "../../tsconfig.build.json", //指定tsconfig文件路径
+      outDir: "dist/types", //指定输出目录
     }),
     hooks({
       rmFiles: [
@@ -85,7 +85,7 @@ export default defineConfig({
   ],
   build: {
     outDir: "dist/es",
-    cssCodeSplit: true,
+    cssCodeSplit: true, //是否将css代码拆分成单独的文件
     minify: false,
     lib: {
       entry: resolve(__dirname, "../index.ts"),
@@ -128,6 +128,7 @@ export default defineConfig({
             return "utils";
           }
           for (const item of getDirectoriesSync("../components")) {
+            //遍历components目录下的所有文件夹
             if (id.includes(`/packages/components/${item}`)) return item;
           }
         },

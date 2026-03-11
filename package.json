@@ -14,7 +14,8 @@
     "build": "run-s build-comp build-hooks",
     "build-comp": "cross-env NODE_ENV=production pnpm --filter kiyo-element build",
     "build-hooks": "cross-env NODE_ENV=production pnpm --filter @kiyo-element/hooks build",
-    "build:dev": "cross-env NODE_ENV=development pnpm --filter kiyo-element build:watch"
+    "build:dev": "cross-env NODE_ENV=development pnpm --filter kiyo-element build:watch",
+    "release": "release-it"
   },
   "keywords": [],
   "author": "",

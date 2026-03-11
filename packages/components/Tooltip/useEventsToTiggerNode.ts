@@ -13,13 +13,14 @@ export function useEvenstToTiggerNode(
   let watchTriggerNodeStopHandle: WatchStopHandle | void;
 
   const _eventHandleMap = new Map();
-  //将事件绑定到虚拟触发节点
+  //将事件绑定到虚拟触发节点 就是添加事件而已
   const _bindEventToVirtualTiggerNode = () => {
     const el = triggerNode.value;
     isElement(el) &&
+      //                     值 键
       each(events.value, (fn, event) => {
         _eventHandleMap.set(event, fn);
-        el?.addEventListener(event as keyof HTMLElementEventMap, fn);
+        el?.addEventListener(event as keyof HTMLElementEventMap, fn); //给虚拟触发节点绑定事件
       });
   };
   //解绑

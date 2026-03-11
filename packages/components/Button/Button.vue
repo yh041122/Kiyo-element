@@ -99,6 +99,7 @@ defineExpose<ButtonInstance>({
     <template v-if="icon && !loading">
       <kiyo-icon :icon="icon" size="1x" :style="iconStyle" />
     </template>
+    <!-- 按钮内容 -->
     <slot></slot>
   </component>
 </template>

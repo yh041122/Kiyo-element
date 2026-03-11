@@ -73,9 +73,9 @@ const closeDelay = computed(() =>
 const triggerStrategyMap: Map<string, () => void> = new Map();
 triggerStrategyMap.set("hover", () => {
   // 鼠标悬停触发
-  events.value["mouseenter"] = openFinal;
-  outerEvents.value["mouseleave"] = closeFinal; //事件冒泡
-  dropdownEvents.value["mouseenter"] = openFinal;
+  events.value["mouseenter"] = openFinal; //进入触发节点
+  outerEvents.value["mouseleave"] = closeFinal; //离开container
+  dropdownEvents.value["mouseenter"] = openFinal; //进入popper节点
 });
 triggerStrategyMap.set("click", () => {
   // 点击触发
@@ -157,9 +157,9 @@ watch(
     // 创建 popper 实例
     if (triggerNode.value && popperNode.value) {
       popperInstance = createPopper(
-        triggerNode.value,
-        popperNode.value,
-        popperOptions.value,
+        triggerNode.value, //触发节点
+        popperNode.value, //popper节点
+        popperOptions.value, //popper选项
       );
     }
   },

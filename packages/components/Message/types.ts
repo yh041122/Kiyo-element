@@ -12,7 +12,6 @@ export const messageTypes = [
   "error", // 错误（红色）
 ] as const;
 
-// 从 messageTypes 数组中提取所有可能的类型值，生成联合类型：
 // 结果: "info" | "success" | "warning" | "danger" | "error"
 export type messageType = (typeof messageTypes)[number];
 

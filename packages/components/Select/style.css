@@ -1,0 +1,76 @@
+.kiyo-select {
+  --kiyo-select-item-hover-bg-color: var(--kiyo-fill-color-light);
+  --kiyo-select-item-font-size: var(--kiyo-font-size-base);
+  --kiyo-select-item-font-color: var(--kiyo-text-color-regular);
+  --kiyo-select-item-selected-font-color: var(--kiyo-color-primary);
+  --kiyo-select-item-disabled-font-color: var(--kiyo-text-color-placeholder);
+  --kiyo-select-input-focus-border-color: var(--kiyo-color-primary);
+}
+
+.kiyo-select {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+  :deep(.kiyo-tooltip__popper) {
+    padding: 0;
+  }
+
+  :deep(.kiyo-input) {
+    .header-angle {
+      transition: transform var(--kiyo-transition-duration);
+      &.is-active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .kiyo-select__nodata,
+  .kiyo-select__loading {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    color: var(--kiyo-text-color-secondary);
+    font-size: var(--kiyo-select-font-size);
+  }
+  .kiyo-select__menu {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .kiyo-select__menu-item {
+    margin: 0;
+    font-size: var(--kiyo-select-item-font-size);
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--kiyo-select-item-font-color);
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--kiyo-select-item-hover-bg-color);
+    }
+    &.is-selected {
+      color: var(--kiyo-select-item-selected-font-color);
+      font-weight: 700;
+    }
+    &.is-highlighted {
+      background-color: var(--kiyo-select-item-hover-bg-color);
+    }
+    &.is-disabled {
+      color: var(--kiyo-select-item-disabled-font-color);
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  :deep(.kiyo-input__inner) {
+    cursor: pointer;
+  }
+}

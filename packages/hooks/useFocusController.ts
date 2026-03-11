@@ -14,11 +14,11 @@ export function useFocusController<T extends HTMLElement | { focus(): void }>(
 ) {
   const instance = getCurrentInstance()!;
   const { emit } = instance;
-  const wrapperRef = ref<HTMLElement>();
+  const wrapperRef = ref<HTMLElement>(); //绑定
   const isFocused = ref(false);
 
   const handleFocus = (event: FocusEvent) => {
-    if (isFocused.value) return;
+    if (isFocused.value) return; //避免重复聚焦
     isFocused.value = true;
     emit("focus", event);
     afterFocus?.();

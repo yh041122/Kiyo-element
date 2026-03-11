@@ -68,7 +68,7 @@ const open4 = () => {
 </template> -->
 
 <!-- notification -->
-<!-- <script setup lang="ts">
+<script setup lang="ts">
 import { h } from "vue";
 import { KiyoNotification } from "kiyo-element";
 
@@ -96,7 +96,7 @@ function openNotify2() {
   <kiyo-button @click="openNotify2" plain
     >Won't closes automatically</kiyo-button
   >
-</template> -->
+</template>
 <!-- <script setup lang="ts">
 import { KiyoMessageBox, KiyoMessage } from "kiyo-element";
 
@@ -114,7 +114,7 @@ function openAlert() {
 <template>
   <kiyo-button @click="openAlert" plain> Click to open the Alert</kiyo-button>
 </template> -->
-<script setup>
+<!-- <script setup>
 import { ref } from "vue";
 import { KiyoLoading } from "kiyo-element";
 
@@ -150,4 +150,26 @@ function openLoading2() {
   </kiyo-button>
   <kiyo-button type="primary" @click="openLoading2"> As a service </kiyo-button>
   <kiyo-switch v-model="switchS" />
-</template>
+</template> -->
+<!-- <script setup>
+import { ref } from "vue";
+const value = ref("");
+const options = ref([
+  {
+    label: "Option 1",
+    value: "1",
+  },
+  {
+    label: "Option 2",
+    value: "2",
+  },
+  {
+    label: "Option 3",
+    value: "3",
+  },
+]);
+</script>
+<template>
+  <kiyo-select v-model="value" :options="options" clearable />
+  <div style="width: 200px"><kiyo-input></kiyo-input></div>
+</template> -->
