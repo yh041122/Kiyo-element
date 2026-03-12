@@ -30,13 +30,16 @@ export default defineConfig({
     vue(),
     visualizer({
       filename: "dist/stats.umd.html",
+      gzipSize: true, // 关键：显示 gzip 压缩后的体积 [citation:1][citation:2][citation:4]
+      brotliSize: true, // 可选：也显示 brotli 压缩后的体积
+      open: true, // 可选：打包完成后自动在浏览器打开报告
     }),
     compression({
       include: /.(cjs|css)$/i,
       algorithms: ["gzip"], // 指定只使用 Gzip 压缩算法
     }),
     hooks({
-      rmFiles: ["./dist/umd", "./dist/index.css"],
+      rmFiles: ["./dist/umd", "./dist/index.css", "./dist/stats.umd.html"],
       afterBuild: moveStyles, //打包完成后移动index.css
     }),
     terser({

@@ -11,7 +11,7 @@
     "test": "run-p  test-utiles test-component",
     "test-component": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/components test",
     "test-utiles": "cross-env NODE_ENV=test pnpm --filter @kiyo-element/utils test",
-    "build": "run-s build-comp build-hooks",
+    "build": "run-s  build-hooks build-comp",
     "build-comp": "cross-env NODE_ENV=production pnpm --filter kiyo-element build",
     "build-hooks": "cross-env NODE_ENV=production pnpm --filter @kiyo-element/hooks build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter kiyo-element build:watch",
@@ -22,6 +22,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.28.1",
   "devDependencies": {
+    "@blockquote/rollup-plugin-total-bundlesize": "^2.3.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.6",
@@ -52,9 +53,9 @@
   },
   "dependencies": {
     "@kiyo-element/hooks": "workspace:*",
+    "@kiyo-element/locale": "workspace:*",
     "@kiyo-element/theme": "workspace:*",
     "@kiyo-element/utils": "workspace:*",
-    "@kiyo-element/locale": "workspace:*",
     "@kiyo-element/vite-plugins": "workspace:*",
     "@vitest/coverage-v8": "^1.4.0",
     "@vue/test-utils": "^2.4.6",
