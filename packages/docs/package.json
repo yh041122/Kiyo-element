@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@vitepress-demo-preview/component": "^2.6.1",
-    "@vitepress-demo-preview/plugin": "^1.4.1",
-    "vitepress-preview-component": "workspace:*"
+    "@vitepress-demo-preview/plugin": "^1.4.1"
   }
 }
