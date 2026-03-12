@@ -1,9 +1,4 @@
-<script setup>
-// import { ErMessage } from "eric-ui";
-// function handleBtnClick() {
-//   ErMessage.info("btn click");
-// }
-</script>
+<script setup></script>
 
 <template>
   <p>

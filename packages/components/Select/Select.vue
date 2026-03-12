@@ -23,7 +23,7 @@ import {
   useId,
   useFocusController,
   useClickOutside,
-} from "@Kiyo-element/hooks";
+} from "@kiyo-element/hooks";
 import type { TooltipInstance } from "../Tooltip/types";
 import type { InputInstance } from "../Input/types";
 import {

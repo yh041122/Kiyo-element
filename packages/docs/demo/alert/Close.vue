@@ -1,10 +1,4 @@
-<script setup>
-// import { ErMessage } from "eric-ui";
-
-// function handleClose() {
-//   ErMessage.info("close callback");
-// }
-</script>
+<script setup></script>
 <template>
   <div class="basic block">
     <kiyo-alert title="Unclosable alert" type="success" :closable="false" />

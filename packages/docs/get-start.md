@@ -10,7 +10,7 @@ next:
 ## 安装
 
 ```bash
-npm i @Kiyo-element --save
+npm i @kiyo-element --save
 ```
 
 ## 开始使用
