@@ -16,7 +16,7 @@
     }
   },
   "vueCompilerOptions": {
-    "experimentalDisableTemplateSupport": true
+    // "experimentalDisableTemplateSupport": true
   },
   "include": ["**/*.vue", "**/*.ts", "**/*.d.ts"],
   "exclude": ["**/node_modules", "**/dist"]
