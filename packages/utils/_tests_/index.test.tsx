@@ -1,12 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { each } from "lodash-es";
-import {
-  debugWarn,
-  throwError,
-  withInstall,
-  makeInstaller,
-  typeIconMap,
-} from "..";
+import { debugWarn, throwError, withInstall, typeIconMap } from "..";
 //分组
 describe("utils/index", () => {
   //测试他们是否被导出
@@ -18,9 +12,6 @@ describe("utils/index", () => {
   });
   it("withInstall should be exported", () => {
     expect(withInstall).toBeDefined();
-  });
-  it("makeInstaller should be exported", () => {
-    expect(makeInstaller).toBeDefined();
   });
   it("typeIconMap should be worked", () => {
     expect(typeIconMap).toBeDefined();
