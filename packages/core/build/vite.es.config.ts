@@ -9,6 +9,7 @@ import dts from "vite-plugin-dts";
 import { hooksPlugin as hooks } from "@kiyo-element/vite-plugins";
 import terser from "@rollup/plugin-terser";
 import shell from "shelljs";
+import totalBundlesize from "@blockquote/rollup-plugin-total-bundlesize";
 const isProd = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
 const isTest = process.env.NODE_ENV === "test";
@@ -48,6 +49,11 @@ export default defineConfig({
     compression({
       include: /.(js|css)$/i, // 压缩js、css和mjs文件
       algorithms: ["gzip"],
+    }),
+    totalBundlesize({
+      // 可选：自定义输出标题和样式，参考 boxen 选项
+      title: "📦 总打包体积",
+      titleAlignment: "center",
     }),
     dts({
       //分包ts文件
