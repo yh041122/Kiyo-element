@@ -17,6 +17,10 @@ jobs:
     # 运行环境：使用最新的 Ubuntu 虚拟机
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     # 任务步骤：按顺序执行
     steps:
       # 1. 拉取代码：把代码从 GitHub 下载到虚拟机
