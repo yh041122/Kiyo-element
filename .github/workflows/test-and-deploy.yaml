@@ -55,17 +55,25 @@ jobs:
 
       # ========== CD 持续部署阶段 ==========
       # 8. 部署到 GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     # GitHub 自动生成的临时令牌，用于身份验证
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     # 要部署的文件夹（构建产物位置）
+      #     publish_dir: ./packages/docs/.vitepress/dist
+      #     # 部署到的目标分支
+      #     publish_branch: gh-pages
+      #     # 每次强制创建孤儿提交，保持分支历史干净
+      #     force_orphan: true
+      #     # 提交代码时使用的身份信息
+      #     user_name: "github-actions[bot]"
+      #     user_email: "github-actions[bot]@users.noreply.github.com"
+      # 替换原有的 Deploy 步骤
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          # GitHub 自动生成的临时令牌，用于身份验证
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 要部署的文件夹（构建产物位置）
-          publish_dir: ./packages/docs/.vitepress/dist
-          # 部署到的目标分支
-          publish_branch: gh-pages
-          # 每次强制创建孤儿提交，保持分支历史干净
-          force_orphan: true
-          # 提交代码时使用的身份信息
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
+          path: ./packages/docs/.vitepress/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
