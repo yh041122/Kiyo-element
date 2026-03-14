@@ -58,10 +58,15 @@ export default defineConfig({
       { icon: "github", link: "https://yh041122.github.io/Kiyo-element/" },
     ],
   },
-  markdown: {
-    config: (md) => {
-      md.use(containerPreview);
-      md.use(componentPreview);
+  // markdown: {
+  //   config: (md) => {
+  //     md.use(containerPreview);
+  //     md.use(componentPreview);
+  //   },
+  // },
+  vue: {
+    template: {
+      ssr: false, // 禁用服务端渲染
     },
   },
 });
