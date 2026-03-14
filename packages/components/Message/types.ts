@@ -56,7 +56,7 @@ export interface MessageProps {
   offset?: number; // 距离顶部的偏移量（用于多个消息堆叠时的间距计算）
   zIndex: number; // 层叠上下文（确保消息在最上层，覆盖模态框等）
   transitionName?: string; // 进入/离开动画的 CSS 过渡类名
-  onDestory(): void; // 组件销毁时的回调（注意：拼写应为 onDestroy）
+  onDestroy(): void;
 }
 
 // 创建消息时的配置选项类型（用户传入的参数）
@@ -85,5 +85,5 @@ export interface MessageCompInstance {
 // 排除了内部管理的字段：onDestory（生命周期钩子）、id（自动生成）、zIndex（自动计算堆叠层级）
 export type CreateMessageProps = Omit<
   MessageProps,
-  "onDestory" | "id" | "zIndex"
+  "onDestroy" | "id" | "zIndex"
 >;

@@ -52,8 +52,7 @@ const { isFocused, handleBlur, handleFocus, wrapperRef } = useFocusController(
     },
     afterBlur() {
       //form校验
-
-      formItem?.validate("blur").catch((err) => debugWarn(err));
+      // formItem?.validate("blur").catch((err) => debugWarn(err));
     },
   },
 );
@@ -63,7 +62,7 @@ const clear: InputInstance["clear"] = () => {
   innerValue.value = "";
   each(["input", "change", "update:modelValue"], (e) => emits(e as any, ""));
   emits("clear");
-  formItem?.clearValidate();
+  // formItem?.clearValidate();
 };
 const focus: InputInstance["focus"] = async () => {
   //聚焦 promise
@@ -99,7 +98,7 @@ watch(
   (newValue) => {
     innerValue.value = newValue;
     //表单检验触发
-    formItem?.validate("change").catch((err) => debugWarn(err));
+    // formItem?.validate("change").catch((err) => debugWarn(err));
   },
 );
 //暴露

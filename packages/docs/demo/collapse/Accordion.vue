@@ -5,8 +5,8 @@ const activeNames = ref(["1"]);
 </script>
 
 <template>
-  <kiyo--collapse v-model="activeNames" accordion>
-    <kiyo--collapse-item title="Consistency" name="1">
+  <kiyo-collapse v-model="activeNames" accordion>
+    <kiyo-collapse-item title="Consistency" name="1">
       <div>
         Consistent with real life: in line with the process and logic of real
         life, and comply with languages and habits that the uskiyo-s are used
@@ -16,8 +16,8 @@ const activeNames = ref(["1"]);
         Consistent within intkiyo-face: all elements should be consistent, such
         as: design style, icons and texts, position of elements, etc.
       </div>
-    </kiyo--collapse-item>
-    <kiyo--collapse-item title="Feedback" name="2">
+    </kiyo-collapse-item>
+    <kiyo-collapse-item title="Feedback" name="2">
       <div>
         Opkiyo-ation feedback: enable the uskiyo-s to clearly pkiyo-ceive their
         opkiyo-ations by style updates and intkiyo-active effects;
@@ -26,8 +26,8 @@ const activeNames = ref(["1"]);
         Visual feedback: reflect current state by updating or rearranging
         elements of the page.
       </div>
-    </kiyo--collapse-item>
-    <kiyo--collapse-item title="Efficiency" name="3">
+    </kiyo-collapse-item>
+    <kiyo-collapse-item title="Efficiency" name="3">
       <div>
         Simplify the process: keep opkiyo-ating process simple and intuitive;
       </div>
@@ -40,8 +40,8 @@ const activeNames = ref(["1"]);
         helps the uskiyo-s to identify and frees them from memorizing and
         recalling.
       </div>
-    </kiyo--collapse-item>
-    <kiyo--collapse-item title="Controllability" name="4">
+    </kiyo-collapse-item>
+    <kiyo-collapse-item title="Controllability" name="4">
       <div>
         Decision making: giving advices about opkiyo-ations is acceptable, but
         do not make decisions for the uskiyo-s;
@@ -51,6 +51,6 @@ const activeNames = ref(["1"]);
         opkiyo-ate, including canceling, aborting or tkiyo-minating current
         opkiyo-ation.
       </div>
-    </kiyo--collapse-item>
-  </kiyo--collapse>
+    </kiyo-collapse-item>
+  </kiyo-collapse>
 </template>

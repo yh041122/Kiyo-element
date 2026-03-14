@@ -2,7 +2,7 @@
 title: MessageBox
 description: MessageBox 组件文档
 
-next: 
+next:
   link: /components/notification
   text: Notification 通知
 
@@ -21,7 +21,7 @@ prev:
 
 ## 消息提示
 
-调用 `ErMessageBox.alert` 方法以打开 alert 框。
+调用 `KiyoMessageBox.alert` 方法以打开 alert 框。
 
 ::: preview
 demo-preview=../demo/messagebox/Alert.vue
@@ -29,7 +29,7 @@ demo-preview=../demo/messagebox/Alert.vue
 
 ## 确认消息
 
-调用 `ErMessageBox.confirm` 方法以打开 confirm 框。
+调用 `KiyoMessageBox.confirm` 方法以打开 confirm 框。
 
 ::: preview
 demo-preview=../demo/messagebox/Confirm.vue
@@ -37,7 +37,7 @@ demo-preview=../demo/messagebox/Confirm.vue
 
 ## 提交内容
 
-调用 `ErMessageBox.prompt` 方法以打开 prompt 框。
+调用 `KiyoMessageBox.prompt` 方法以打开 prompt 框。
 
 ::: preview
 demo-preview=../demo/messagebox/Prompt.vue
@@ -53,7 +53,7 @@ demo-preview=../demo/messagebox/VNode.vue
 
 ## 个性化
 
-可以通过配置 `ErMessageBox` 的参数来实现一些个性化需求（options 参数见下文）。
+可以通过配置 `KiyoMessageBox` 的参数来实现一些个性化需求（options 参数见下文）。
 
 ::: preview
 demo-preview=../demo/messagebox/Custom.vue
@@ -71,14 +71,14 @@ demo-preview=../demo/messagebox/Center.vue
 
 ## 全局方法
 
-`ErMessageBox` 提供了全局方法 `ErMessageBox.alert`、`ErMessageBox.confirm`、`ErMessageBox.prompt`，用于在需要时弹出消息弹框。
-如果完整引入了 `EricUI`, 则会为 `app.config.globalProperties` 添加全局方法 `$msgbox`、`$alert`、`$confirm`、`$prompt`。
+`KiyoMessageBox` 提供了全局方法 `KiyoMessageBox.alert`、`KiyoMessageBox.confirm`、`KiyoMessageBox.prompt`，用于在需要时弹出消息弹框。
+如果完整引入了 `KiyoicUI`, 则会为 `app.config.globalProperties` 添加全局方法 `$msgbox`、`$alert`、`$confirm`、`$prompt`。
 在 Vue 实例中可以作为 `this.$msgbox`、`this.$alert`、`this.$confirm`、`this.$prompt` 使用。
 
 ## 单独引用
 
 ```typescript
-import { ErMessageBox } from "eric-ui";
+import { KiyoMessageBox } from "eric-ui";
 ```
 
 ## MessageBox API

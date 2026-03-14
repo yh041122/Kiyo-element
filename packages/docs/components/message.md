@@ -2,7 +2,7 @@
 title: Message
 description: Message 组件文档
 
-next: 
+next:
   link: /components/messagebox
   text: MessageBox 消息弹出框
 
@@ -56,7 +56,7 @@ Message 组件提供了全局方法 `$message`，在 Vue 实例中可以作为 `
 ## 单独引用
 
 ```typescript
-import { ErMessage } from "eric-ui";
+import { KiyoMessage } from "kiyo-element";
 ```
 
 ## Message API

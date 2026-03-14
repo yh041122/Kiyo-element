@@ -1,51 +1,71 @@
 name: Deploy VitePress Docs
 
+# 触发条件：当代码推送到 master 或 main 分支时自动运行
 on:
   push:
     branches: [master, main]
 
-# 明确权限
+# 权限配置：告诉 GitHub 这个工作流需要哪些权限
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write # 写入代码权限（用于更新 gh-pages 分支）
+  pages: write # 操作 GitHub Pages 服务的权限
+  id-token: write # 生成 OIDC 身份令牌的权限（用于安全验证）
 
 jobs:
+  # 定义一个名为 build-and-deploy 的任务
   build-and-deploy:
+    # 运行环境：使用最新的 Ubuntu 虚拟机
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
+    # 任务步骤：按顺序执行
+    steps:
+      # 1. 拉取代码：把代码从 GitHub 下载到虚拟机
+      - name: Checkout
+        uses: actions/checkout@v4 # uses用别人写好的插件
+
+      # 2. 安装 pnpm 包管理器（指定版本确保一致性）
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 10.28.1
 
+      # 3. 配置 Node.js 环境（20版本）并开启 pnpm 缓存加速
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
+      # ========== CI 持续集成阶段 ==========
+      # 4. 安装所有依赖（--no-frozen-lockfile 允许更新锁文件）
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile #run 自己写脚本
 
+      # 5. 构建核心组件库
       - name: Build core library
         run: pnpm build
 
+      # 6. 构建文档网站（生成静态文件）
       - name: Build docs
         run: pnpm docs:build
 
+      # 7. 添加 .nojekyll 文件，禁用 GitHub Pages 的 Jekyll 处理
       - name: Add .nojekyll
         run: touch packages/docs/.vitepress/dist/.nojekyll
 
+      # ========== CD 持续部署阶段 ==========
+      # 8. 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # 使用默认的 GITHUB_TOKEN，不需要额外配置
+          # GitHub 自动生成的临时令牌，用于身份验证
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 要部署的文件夹（构建产物位置）
           publish_dir: ./packages/docs/.vitepress/dist
+          # 部署到的目标分支
           publish_branch: gh-pages
+          # 每次强制创建孤儿提交，保持分支历史干净
           force_orphan: true
+          # 提交代码时使用的身份信息
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"

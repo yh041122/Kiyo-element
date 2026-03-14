@@ -71,10 +71,11 @@ defineExpose<MessageCompInstance>({
 <template>
   <!-- 在外层包一层动画 -->
   <!-- getBoundingClientRect().height获取高度 -->
+  <!-- 销毁 -->
   <Transition
     :name="transitionName"
     @enter="boxHeight = messageRef!.getBoundingClientRect().height"
-    @after-leave="!visible && onDestory()"
+    @after-leave="!visible && onDestroy()"
   >
     <div
       ref="messageRef"
@@ -85,7 +86,7 @@ defineExpose<MessageCompInstance>({
         'text-center': center,
       }"
       :style="customStyle"
-      v-show="visible"
+      v-if="visible"
       role="alert"
       @mouseenter="clearTimer"
       @mouseleave="startTimmer"

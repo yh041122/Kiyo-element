@@ -44,19 +44,19 @@ demo-preview=../demo/loading/Fullscreen.vue
 服务方式调用，可以自定义遮罩的文案，也可以通过 `close` 方法关闭。
 
 ```typescript
-import { ErLoading } from "eric-ui";
+import { KiyoLoading } from "kiyo-element";
 ```
 
 需要的时候通过以下方式调用
 
 ```typescript
-ErLoading.service(options);
+KiyoLoading.service(options);
 ```
 
 LoadingService 会返回一个 Loading 实例，可通过调用该实例的 close 方法来关闭它
 
 ```typescript
-const loading = ErLoading.service(options);
+const loading = KiyoLoading.service(options);
 nextTick(() => {
   loading.close();
 });

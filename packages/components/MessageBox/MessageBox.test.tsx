@@ -1,12 +1,15 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import type { MessageBoxType } from "./types";
 import MessageBox from "./methods";
-
-//渲染等待工具 确保在浏览器完成绘制且 Vue 完成 DOM 更新后才继续执行。
 import { rAF } from "@kiyo-element/utils";
 
 describe("MessageBox Component", () => {
-  // 渲染
+  // 辅助函数：清理DOM
+  afterEach(() => {
+    document.body.innerHTML = "";
+    vi.clearAllMocks();
+  });
+
   it("renders correctly", async () => {
     const props = {
       title: "Test Title",
@@ -18,8 +21,9 @@ describe("MessageBox Component", () => {
       showConfirmButton: true,
     };
 
-    MessageBox(props); // 渲染组件
+    MessageBox(props);
     await rAF();
+
     const header = document.querySelector(".kiyo-message-box__header");
     const title = document.querySelector(".kiyo-message-box__title");
     const message = document.querySelector(".kiyo-message-box__message");
@@ -28,9 +32,9 @@ describe("MessageBox Component", () => {
     expect(header).toBeTruthy();
     expect(message).toBeTruthy();
 
-    MessageBox.close(); // 关闭组件
+    MessageBox.close();
   });
-  // 关闭按钮点击
+
   it("closes on close button click", async () => {
     const props = {
       title: "Test Title",
@@ -39,14 +43,21 @@ describe("MessageBox Component", () => {
     };
 
     const doAction = vi.fn();
-    MessageBox(props).catch((action) => doAction(action));
+
+    // ✅ 正确：同时处理 resolve 和 reject
+    MessageBox(props).then(
+      (action) => doAction(action),
+      (action) => doAction(action),
+    );
+
     await rAF();
 
     const closeBtn = document.querySelector(
       ".kiyo-message-box__header-btn",
     ) as HTMLButtonElement;
-    closeBtn.click();
 
+    expect(closeBtn).toBeTruthy();
+    closeBtn.click();
     await rAF();
 
     expect(doAction).toHaveBeenCalledWith("close");
@@ -61,12 +72,20 @@ describe("MessageBox Component", () => {
     };
 
     const doAction = vi.fn();
-    MessageBox(props).then((action) => doAction(action));
+
+    // ✅ 正确：同时处理 resolve 和 reject
+    MessageBox(props).then(
+      (action) => doAction(action),
+      (action) => doAction(action),
+    );
+
     await rAF();
 
     const confirmBtn = document.querySelector(
-      ".kiyo-message-box__footer-btn",
+      ".kiyo-message-box__confirm-btn",
     ) as HTMLButtonElement;
+
+    expect(confirmBtn).toBeTruthy();
     confirmBtn.click();
     await rAF();
 
@@ -82,19 +101,26 @@ describe("MessageBox Component", () => {
     };
 
     const doAction = vi.fn();
-    MessageBox(props).catch((err) => doAction(err));
+
+    // ✅ 正确：同时处理 resolve 和 reject
+    MessageBox(props).then(
+      (action) => doAction(action),
+      (action) => doAction(action),
+    );
+
     await rAF();
 
     const cancelBtn = document.querySelector(
       ".kiyo-message-box__cancel-btn",
     ) as HTMLButtonElement;
-    cancelBtn.click();
 
+    expect(cancelBtn).toBeTruthy();
+    cancelBtn.click();
     await rAF();
 
     expect(doAction).toHaveBeenCalledWith("cancel");
   });
-  //提交
+
   it("handles input in prompt mode", async () => {
     const props = {
       title: "Test Title",
@@ -104,16 +130,26 @@ describe("MessageBox Component", () => {
     };
 
     const doAction = vi.fn();
-    MessageBox(props).then((res) => doAction(res));
+
+    // ✅ 正确：同时处理 resolve 和 reject
+    MessageBox(props).then(
+      (res) => doAction(res),
+      (err) => doAction(err),
+    );
+
     await rAF();
 
     const input = document.querySelector("input") as HTMLInputElement;
+    expect(input).toBeTruthy();
+
     input.value = "Test Input";
-    input.dispatchEvent(new Event("input"));
+    input.dispatchEvent(new Event("input", { bubbles: true }));
 
     const confirmBtn = document.querySelector(
       ".kiyo-message-box__confirm-btn",
     ) as HTMLButtonElement;
+
+    expect(confirmBtn).toBeTruthy();
     confirmBtn.click();
 
     await rAF();

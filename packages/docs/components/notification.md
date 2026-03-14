@@ -2,7 +2,7 @@
 title: Notification
 description: Notification 组件文档
 
-next: 
+next:
   link: /components/popconfirm
   text: PopConfirm 气泡确认框
 
@@ -44,7 +44,7 @@ demo-preview=../demo/notification/Closeable.vue
 ## 单独引用
 
 ```typescript
-import { ErNotification } from "eric-ui";
+import { KiyoNotification } from "kiyo-element";
 ```
 
 ## Notification API
