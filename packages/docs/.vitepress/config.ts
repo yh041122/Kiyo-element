@@ -60,8 +60,8 @@ export default defineConfig({
   },
   markdown: {
     config: (md) => {
-      md.use(containerPreview, { clientOnly: true }); // 添加 clientOnly 参数
-      md.use(componentPreview, { clientOnly: true }); // 添加 clientOnly 参数
+      md.use(containerPreview); // 添加 clientOnly 参数
+      md.use(componentPreview); // 添加 clientOnly 参数
     },
   },
 });
