@@ -58,15 +58,10 @@ export default defineConfig({
       { icon: "github", link: "https://yh041122.github.io/Kiyo-element/" },
     ],
   },
-  // markdown: {
-  //   config: (md) => {
-  //     md.use(containerPreview);
-  //     md.use(componentPreview);
-  //   },
-  // },
-  vue: {
-    template: {
-      ssr: false, // 禁用服务端渲染
+  markdown: {
+    config: (md) => {
+      md.use(containerPreview, { clientOnly: true }); // 添加 clientOnly 参数
+      md.use(componentPreview, { clientOnly: true }); // 添加 clientOnly 参数
     },
   },
 });
