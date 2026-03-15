@@ -31,7 +31,7 @@ const messageInstanceMap = new Map<
     reject: (res: any) => void;
   }
 >();
-//创建组件实例
+//初始化组件实例
 function initInstance(props: MessageBoxProps, container: HTMLElement) {
   //数据
   const visible = ref(false);
@@ -52,12 +52,13 @@ function initInstance(props: MessageBoxProps, container: HTMLElement) {
   document.body.appendChild(container.firstElementChild!);
   return vnode.component; //返回组件实例
 }
-//显示对话框
+//创建对话框
 function createMessage(options: MessageBoxOptions) {
   const container = document.createElement("div"); //容器
   const props: MessageBoxProps = {
     //合并options和默认配置
     ...options,
+    //这里使用了闭包 因为先使用了未定义的变量vm，doClose、doAction这些函数不会在定义的时候立即执行，未来执行的时候vm已经定义好了
     doClose: () => {
       vm.visible.value = false;
     },
@@ -140,6 +141,7 @@ each(
   (type) =>
     //为每个消息框类型设置工厂函数
     set(MessageBox, type, messageBoxFactory(type)), //MessageBox.alert、MessageBox.confirm、MessageBox.prompt
+    //之后 await MessageBox.alert()
 );
 //创建消息框工厂函数
 function messageBoxFactory(boxType: (typeof MESSAGE_BOX_VARIANTS)[number]) {

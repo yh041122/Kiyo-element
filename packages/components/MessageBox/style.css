@@ -144,16 +144,12 @@
   }
 }
 
-.fade-in-linear-enter-active {
-  .kiyo-overlay-message-box {
-    animation: msgbox-fade-in var(--kiyo-transition-duration);
-  }
+.fade-in-linear-enter-active .kiyo-overlay-message-box {
+  animation: msgbox-fade-in var(--kiyo-transition-duration);
 }
 
-.fade-in-linear-leave-active {
-  .kiyo-overlay-message-box {
-    animation: msgbox-fade-in var(--kiyo-transition-duration) reverse;
-  }
+.fade-in-linear-leave-active .kiyo-overlay-message-box {
+  animation: msgbox-fade-in var(--kiyo-transition-duration) reverse;
 }
 
 @keyframes msgbox-fade-in {

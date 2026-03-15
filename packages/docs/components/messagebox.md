@@ -78,7 +78,7 @@ demo-preview=../demo/messagebox/Center.vue
 ## 单独引用
 
 ```typescript
-import { KiyoMessageBox } from "eric-ui";
+import { KiyoMessageBox } from "kiyo-element";
 ```
 
 ## MessageBox API

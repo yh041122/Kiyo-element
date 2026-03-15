@@ -10,7 +10,7 @@ import type {
   messageType,
 } from "./types";
 import { messageTypes } from "./types";
-import { render, h, shallowReactive, isVNode, nextTick } from "vue";
+import { render, h, shallowReactive, isVNode } from "vue";
 import { findIndex, get, each, set, isString } from "lodash-es";
 import { useId, useZindex } from "@kiyo-element/hooks";
 import MessageConstructor from "./Message.vue"; // 引入消息组件
@@ -69,9 +69,6 @@ async function createMessage(
 
   // 渲染到容器
   render(vnode, container);
-
-  // 确保有子节点再添加到 body
-  await nextTick(); // 等待渲染完成
 
   const element = container.firstElementChild || container.firstChild;
   if (element && element instanceof Node) {

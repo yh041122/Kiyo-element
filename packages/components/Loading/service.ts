@@ -4,12 +4,16 @@ import { useZindex } from "@kiyo-element/hooks";
 import { ref, reactive, createApp, nextTick } from "vue";
 import LoadingComp from "./Loading.vue";
 //常量
-const LOADING_NUMB_KEY = "kiyo-loading-numb" as const;
+const LOADING_NUMB_KEY = "kiyo-loading-numb" as const; //loading实例数量key
 const RELATIVE_CLASS = "kiyo-loading-parent--relative" as const;
 const HIDEN_CLASS = "kiyo-loading-parent--hiden" as const;
 //loading实例map
 const instanceMap: Map<HTMLElement, LoadingInstance> = new Map();
 const { nextZindex } = useZindex(30000);
+/**
+ * 辅助函数
+ */
+
 //loading num 在同一个targt上调用 只有【一个】loading实例
 function getLoadingNumb(target: HTMLElement = document.body) {
   return target.getAttribute(LOADING_NUMB_KEY); //获取指定属性的值
@@ -56,7 +60,7 @@ function addClass(opts: LoadingOptions, target: HTMLElement = document.body) {
   } else {
     removeHidenClass(target);
   }
-  addRelativeClass(target);
+  addRelativeClass(target); //确保最近的父组件是relative
 }
 //处理options
 function resolveOptions(options: LoadingOptions): LoadingOptionsResolved {
@@ -77,7 +81,7 @@ function resolveOptions(options: LoadingOptions): LoadingOptionsResolved {
     text: options.text,
     fullscreen: target === document.body && (options.fullscreen ?? true), //如果是body，默认全屏
     lock: options.lock ?? false, //锁定滚动
-    visible: options.visible ?? true,
+    visible: options.visible ?? true, //默认为true
     target,
   };
 }
@@ -85,24 +89,26 @@ function resolveOptions(options: LoadingOptions): LoadingOptionsResolved {
 function createLoading(opts: LoadingOptionsResolved) {
   const visible = ref(opts.visible);
   const afterLeaveFlag = ref(false);
-
   const handleAfterLeave = () => {
     if (!afterLeaveFlag.value) return;
     destroy();
   };
-
   const data = reactive({
     ...opts,
     onAfterLeave: handleAfterLeave,
   });
   const setText = (text: string) => (data.text = text);
-
+  //   createApp 的作用：
+  // 创建一个 Vue 的应用实例
+  // 将 LoadingComp 组件作为根组件
+  // 传入的第二个参数是props，会传递给 LoadingComp
   const app = createApp(LoadingComp, {
     ...data,
     zIndex: data.fullscreen ? nextZindex() : void 0,
     visible,
   });
-  const vm = app.mount(document.createElement("div"));
+  const vm = app.mount(document.createElement("div")); //返回组件实例
+  //loading动画结束自动调用
   const destroy = () => {
     const target = data.parent;
     subLoadingNumb(target!);
@@ -117,13 +123,13 @@ function createLoading(opts: LoadingOptionsResolved) {
     app.unmount();
   };
   let afterLeaveTimer: number;
+  //v-loading的binding来关闭
   const close = () => {
     //                           返回false
     if (opts.beforeClose && !opts.beforeClose()) return; //阻断关闭
     afterLeaveFlag.value = true;
     clearTimeout(afterLeaveTimer);
     afterLeaveTimer = delay(handleAfterLeave, 500); //?
-
     visible.value = false;
     opts.closed?.(); //执行用户传入的closed函数
   };
@@ -146,11 +152,9 @@ let fullscreenInstance: LoadingInstance | null = null;
 export function Loading(options: LoadingOptions = {}): LoadingInstance {
   const resolved = resolveOptions(options); //处理options
   const target = resolved.parent ?? document.body;
-
   if (resolved.fullscreen && !isNil(fullscreenInstance))
     //单例
     return fullscreenInstance; //如果是全屏loading，返回全屏实例
-
   //增加 loading number
   addLoadingNumb(resolved?.parent);
   if (instanceMap.has(target)) return instanceMap.get(target)!; //如果已经有loading实例，返回该实例
@@ -168,7 +172,6 @@ export function Loading(options: LoadingOptions = {}): LoadingInstance {
   addClass(options, resolved?.parent);
   resolved?.parent?.appendChild(instance.$el); //在父元素上挂载loading实例
   nextTick(() => (instance.visible.value = !!resolved.visible));
-
   if (resolved.fullscreen) {
     fullscreenInstance = instance; //单例模式
   }

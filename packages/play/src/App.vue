@@ -35,7 +35,7 @@ const changelang = () => {
     </kiyo-popconfirm>
   </kiyo-config-provider>
 </template> -->
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref } from "vue";
 
 const activeNames = ref(["1"]);
@@ -90,10 +90,10 @@ const activeNames = ref(["1"]);
       </div>
     </kiyo-collapse-item>
   </kiyo-collapse>
-</template>
+</template> -->
 
 <!-- message -->
-<!-- <script lang="ts" setup>
+<script lang="ts" setup>
 import { KiyoMessage } from "kiyo-element";
 import { h } from "vue";
 const open1 = () => {
@@ -122,7 +122,7 @@ const open4 = () => {
   <kiyo-button :plain="true" @click="open3">Warning</kiyo-button>
   <kiyo-button :plain="true" @click="open1">Message</kiyo-button>
   <kiyo-button :plain="true" @click="open4">Error</kiyo-button>
-</template> -->
+</template>
 
 <!-- notification -->
 <!-- <script setup lang="ts">

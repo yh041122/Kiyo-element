@@ -61,7 +61,6 @@ function clearTimer() {
 function close() {
   visible.value = false;
 }
-
 onMounted(() => {
   visible.value = true;
   startTimer(); //开启
